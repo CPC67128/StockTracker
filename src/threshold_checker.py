@@ -105,3 +105,7 @@ class ThresholdChecker:
             if symbol:
                 display_names.append(f"{name} ({symbol})" if name else symbol)
         return display_names
+
+    def get_symbol_to_name_map(self) -> Dict[str, str]:
+        """Get mapping of symbol to name for display purposes"""
+        return {stock.get('symbol'): stock.get('name', '') for stock in self.stocks if stock.get('symbol')}

@@ -41,24 +41,28 @@ class StockFetcher:
                 logger.warning("Web scraper not available, falling back to API")
                 self.use_web_scraping = False
 
-    def get_stock_price(self, symbol: str, retry_count: int = 3) -> Optional[float]:
+    def get_stock_price(self, symbol: str, retry_count: int = 3, name: str = '') -> Optional[float]:
         """
         Fetch the current price for a given stock symbol
 
         Args:
             symbol: Stock ticker symbol (e.g., 'AAPL', 'GOOGL')
             retry_count: Number of retry attempts (default: 3)
+            name: Optional stock name for better logging
 
         Returns:
             Current stock price or None if fetch fails
         """
+        # Create display name for logging
+        display_name = f"{name} ({symbol})" if name else symbol
+
         # Use web scraping if enabled
         if self.use_web_scraping and self.web_scraper:
-            logger.info(f"Fetching {symbol} via web scraping")
-            price = self.web_scraper.get_stock_price(symbol)
+            logger.info(f"Fetching {display_name} via web scraping")
+            price = self.web_scraper.get_stock_price(symbol, name=name)
             if price:
                 return price
-            logger.warning(f"Web scraping failed for {symbol}, trying API fallback")
+            logger.warning(f"Web scraping failed for {display_name}, trying API fallback")
 
         # Use Yahoo Finance API (original method)
         for attempt in range(retry_count):
@@ -108,19 +112,24 @@ class StockFetcher:
         logger.error(f"Failed to fetch {symbol} after {retry_count} attempts")
         return None
 
-    def get_multiple_prices(self, symbols: list) -> Dict[str, Optional[float]]:
+    def get_multiple_prices(self, symbols: list, symbol_to_name: Dict[str, str] = None) -> Dict[str, Optional[float]]:
         """
         Fetch prices for multiple stock symbols
 
         Args:
             symbols: List of stock ticker symbols
+            symbol_to_name: Optional mapping of symbols to names for better logging
 
         Returns:
             Dictionary mapping symbols to their current prices
         """
+        if symbol_to_name is None:
+            symbol_to_name = {}
+
         prices = {}
         for i, symbol in enumerate(symbols):
-            prices[symbol] = self.get_stock_price(symbol)
+            name = symbol_to_name.get(symbol, '')
+            prices[symbol] = self.get_stock_price(symbol, name=name)
             # Add delay between requests to avoid rate limiting
             if i < len(symbols) - 1:  # Don't delay after last symbol
                 time.sleep(3)  # Wait 3 seconds between each request

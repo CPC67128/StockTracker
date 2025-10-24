@@ -49,8 +49,11 @@ class StockTracker:
         display_names = self.checker.get_stock_display_names()
         logger.info(f"Tracking {len(symbols)} stocks: {', '.join(display_names)}")
 
+        # Get symbol to name mapping for fetcher logging
+        symbol_to_name = self.checker.get_symbol_to_name_map()
+
         # Fetch current prices
-        prices = self.fetcher.get_multiple_prices(symbols)
+        prices = self.fetcher.get_multiple_prices(symbols, symbol_to_name)
 
         # Check for threshold violations
         violations = self.checker.check_thresholds(prices)

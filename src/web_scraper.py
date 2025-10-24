@@ -46,16 +46,20 @@ class WebScraper:
         # US stocks: 1rP{SYMBOL} (e.g., 1rPAAPL for Apple)
         return f"1rP{symbol}"
 
-    def get_price_from_boursorama(self, symbol: str) -> Optional[float]:
+    def get_price_from_boursorama(self, symbol: str, name: str = '') -> Optional[float]:
         """
         Fetch stock price from Boursorama (French financial site)
 
         Args:
             symbol: Stock ticker symbol (e.g., 'MC', 'OR') or ISIN (e.g., 'FR0000033904')
+            name: Optional stock name for better logging
 
         Returns:
             Current stock price or None if fetch fails
         """
+        # Create display name for logging
+        display_name = f"{name} ({symbol})" if name else symbol
+
         try:
             # Check if symbol is an ISIN code
             is_isin = len(symbol) == 12 and symbol[:2].isalpha()
@@ -64,7 +68,7 @@ class WebScraper:
                 # For ISIN, use Boursorama search API or direct URL
                 # Try the ISIN-based URL format
                 url = f"https://www.boursorama.com/recherche/?query={symbol}"
-                logger.info(f"Searching Boursorama for ISIN {symbol}: {url}")
+                logger.info(f"Searching Boursorama for ISIN {display_name}: {url}")
 
                 response = self.session.get(url, timeout=10)
                 if response.status_code == 200:
@@ -83,11 +87,11 @@ class WebScraper:
                 boursorama_symbol = self._convert_to_boursorama_symbol(symbol)
                 url = f"https://www.boursorama.com/cours/{boursorama_symbol}/"
 
-                logger.info(f"Fetching {symbol} from Boursorama: {url}")
+                logger.info(f"Fetching {display_name} from Boursorama: {url}")
                 response = self.session.get(url, timeout=10)
 
                 if response.status_code != 200:
-                    logger.warning(f"Boursorama returned status {response.status_code} for {symbol}")
+                    logger.warning(f"Boursorama returned status {response.status_code} for {display_name}")
                     return None
 
                 soup = BeautifulSoup(response.text, 'lxml')
@@ -113,26 +117,30 @@ class WebScraper:
                     # Extract number from text (handle formats like "175,50 EUR" or "175.50")
                     price = self._extract_price(price_text)
                     if price:
-                        logger.info(f"Fetched {symbol} from Boursorama: €{price:.4f}")
+                        logger.info(f"Fetched {display_name} from Boursorama: €{price:.4f}")
                         return price
 
-            logger.warning(f"Could not find price element for {symbol} on Boursorama")
+            logger.warning(f"Could not find price element for {display_name} on Boursorama")
             return None
 
         except Exception as e:
-            logger.error(f"Error fetching {symbol} from Boursorama: {str(e)}")
+            logger.error(f"Error fetching {display_name} from Boursorama: {str(e)}")
             return None
 
-    def get_price_from_google_finance(self, symbol: str) -> Optional[float]:
+    def get_price_from_google_finance(self, symbol: str, name: str = '') -> Optional[float]:
         """
         Fetch stock price from Google Finance
 
         Args:
             symbol: Stock ticker symbol with exchange (e.g., 'NASDAQ:AAPL')
+            name: Optional stock name for better logging
 
         Returns:
             Current stock price or None if fetch fails
         """
+        # Create display name for logging
+        display_name = f"{name} ({symbol})" if name else symbol
+
         try:
             # Google Finance format: /quote/AAPL:NASDAQ
             if ':' not in symbol:
@@ -143,11 +151,11 @@ class WebScraper:
 
             url = f"https://www.google.com/finance/quote/{exchange_symbol.replace(':', ':')}"
 
-            logger.info(f"Fetching {symbol} from Google Finance: {url}")
+            logger.info(f"Fetching {display_name} from Google Finance: {url}")
             response = self.session.get(url, timeout=10)
 
             if response.status_code != 200:
-                logger.warning(f"Google Finance returned status {response.status_code} for {symbol}")
+                logger.warning(f"Google Finance returned status {response.status_code} for {display_name}")
                 return None
 
             soup = BeautifulSoup(response.text, 'lxml')
@@ -165,34 +173,38 @@ class WebScraper:
                     price_text = price_elem.get_text(strip=True)
                     price = self._extract_price(price_text)
                     if price:
-                        logger.info(f"Fetched {symbol} from Google Finance: ${price:.4f}")
+                        logger.info(f"Fetched {display_name} from Google Finance: ${price:.4f}")
                         return price
 
-            logger.warning(f"Could not find price element for {symbol} on Google Finance")
+            logger.warning(f"Could not find price element for {display_name} on Google Finance")
             return None
 
         except Exception as e:
-            logger.error(f"Error fetching {symbol} from Google Finance: {str(e)}")
+            logger.error(f"Error fetching {display_name} from Google Finance: {str(e)}")
             return None
 
-    def get_price_from_marketwatch(self, symbol: str) -> Optional[float]:
+    def get_price_from_marketwatch(self, symbol: str, name: str = '') -> Optional[float]:
         """
         Fetch stock price from MarketWatch
 
         Args:
             symbol: Stock ticker symbol (e.g., 'AAPL')
+            name: Optional stock name for better logging
 
         Returns:
             Current stock price or None if fetch fails
         """
+        # Create display name for logging
+        display_name = f"{name} ({symbol})" if name else symbol
+
         try:
             url = f"https://www.marketwatch.com/investing/stock/{symbol.lower()}"
 
-            logger.info(f"Fetching {symbol} from MarketWatch: {url}")
+            logger.info(f"Fetching {display_name} from MarketWatch: {url}")
             response = self.session.get(url, timeout=10)
 
             if response.status_code != 200:
-                logger.warning(f"MarketWatch returned status {response.status_code} for {symbol}")
+                logger.warning(f"MarketWatch returned status {response.status_code} for {display_name}")
                 return None
 
             soup = BeautifulSoup(response.text, 'lxml')
@@ -210,14 +222,14 @@ class WebScraper:
                     price_text = price_elem.get_text(strip=True)
                     price = self._extract_price(price_text)
                     if price:
-                        logger.info(f"Fetched {symbol} from MarketWatch: ${price:.4f}")
+                        logger.info(f"Fetched {display_name} from MarketWatch: ${price:.4f}")
                         return price
 
-            logger.warning(f"Could not find price element for {symbol} on MarketWatch")
+            logger.warning(f"Could not find price element for {display_name} on MarketWatch")
             return None
 
         except Exception as e:
-            logger.error(f"Error fetching {symbol} from MarketWatch: {str(e)}")
+            logger.error(f"Error fetching {display_name} from MarketWatch: {str(e)}")
             return None
 
     def _extract_price(self, text: str) -> Optional[float]:
@@ -268,17 +280,21 @@ class WebScraper:
             logger.debug(f"Could not extract price from '{text}': {str(e)}")
             return None
 
-    def get_stock_price(self, symbol: str, sources: list = None) -> Optional[float]:
+    def get_stock_price(self, symbol: str, sources: list = None, name: str = '') -> Optional[float]:
         """
         Fetch stock price trying multiple sources in order
 
         Args:
             symbol: Stock ticker symbol or ISIN code
             sources: List of sources to try (default: auto-detect based on symbol)
+            name: Optional stock name for better logging
 
         Returns:
             Current stock price or None if all sources fail
         """
+        # Create display name for logging
+        display_name = f"{name} ({symbol})" if name else symbol
+
         if sources is None:
             # Auto-detect best sources based on symbol format
             # If it looks like an ISIN (FR, DE, US + 10 chars) or French symbol, prioritize Boursorama
@@ -287,18 +303,18 @@ class WebScraper:
 
             if is_isin or is_french:
                 sources = ['boursorama', 'google', 'marketwatch']
-                logger.info(f"Detected French/ISIN stock {symbol}, prioritizing Boursorama")
+                logger.info(f"Detected French/ISIN stock {display_name}, prioritizing Boursorama")
             else:
                 sources = ['marketwatch', 'google', 'boursorama']
 
         for source in sources:
             try:
                 if source == 'google':
-                    price = self.get_price_from_google_finance(symbol)
+                    price = self.get_price_from_google_finance(symbol, name=name)
                 elif source == 'marketwatch':
-                    price = self.get_price_from_marketwatch(symbol)
+                    price = self.get_price_from_marketwatch(symbol, name=name)
                 elif source == 'boursorama':
-                    price = self.get_price_from_boursorama(symbol)
+                    price = self.get_price_from_boursorama(symbol, name=name)
                 else:
                     logger.warning(f"Unknown source: {source}")
                     continue
@@ -307,8 +323,8 @@ class WebScraper:
                     return price
 
             except Exception as e:
-                logger.error(f"Error with source {source} for {symbol}: {str(e)}")
+                logger.error(f"Error with source {source} for {display_name}: {str(e)}")
                 continue
 
-        logger.error(f"All sources failed for {symbol}")
+        logger.error(f"All sources failed for {display_name}")
         return None
