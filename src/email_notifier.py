@@ -90,3 +90,99 @@ class EmailNotifier:
 
         body += "\nThis is an automated alert from StockTracker.\n"
         return body
+
+    def send_daily_summary(self, stocks_data: List[Dict]) -> bool:
+        """
+        Send daily summary email with all stock prices and thresholds
+
+        Args:
+            stocks_data: List of dictionaries with stock info (symbol, name, price, thresholds)
+
+        Returns:
+            True if email sent successfully, False otherwise
+        """
+        if not stocks_data:
+            logger.info("No stocks data to report in daily summary")
+            return True
+
+        if not all([self.sender_email, self.sender_password, self.recipient_email]):
+            logger.error("Email configuration incomplete. Check environment variables.")
+            return False
+
+        try:
+            # Create email message
+            message = MIMEMultipart()
+            message['From'] = self.sender_email
+            message['To'] = self.recipient_email
+            message['Subject'] = 'Stock Price Summary - Daily Report'
+
+            # Build email body
+            body = self._build_summary_body(stocks_data)
+            message.attach(MIMEText(body, 'plain'))
+
+            # Send email
+            # Use SMTP_SSL for port 465, regular SMTP with STARTTLS for port 587
+            if self.smtp_port == 465:
+                with smtplib.SMTP_SSL(self.smtp_server, self.smtp_port) as server:
+                    server.login(self.sender_email, self.sender_password)
+                    server.send_message(message)
+            else:
+                with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
+                    server.starttls()
+                    server.login(self.sender_email, self.sender_password)
+                    server.send_message(message)
+
+            logger.info(f"Daily summary email sent successfully for {len(stocks_data)} stock(s)")
+            return True
+
+        except Exception as e:
+            logger.error(f"Failed to send daily summary email: {str(e)}")
+            return False
+
+    def _build_summary_body(self, stocks_data: List[Dict]) -> str:
+        """Build the email body text for daily summary"""
+        body = "Stock Price Summary - Daily Report\n"
+        body += "=" * 50 + "\n\n"
+
+        for stock in stocks_data:
+            # Show name and symbol
+            if stock.get('name'):
+                body += f"Stock: {stock['name']}\n"
+                body += f"Symbol: {stock['symbol']}\n"
+            else:
+                body += f"Symbol: {stock['symbol']}\n"
+
+            # Current price
+            price = stock.get('price')
+            if price is not None:
+                body += f"Current Price: {price:.4f}€\n"
+            else:
+                body += "Current Price: N/A\n"
+
+            # Thresholds
+            upper = stock.get('upper_threshold')
+            lower = stock.get('lower_threshold')
+
+            if upper and upper > 0:
+                body += f"Upper Threshold: {upper:.4f}€\n"
+            else:
+                body += "Upper Threshold: Not set\n"
+
+            if lower and lower > 0:
+                body += f"Lower Threshold: {lower:.4f}€\n"
+            else:
+                body += "Lower Threshold: Not set\n"
+
+            # Status
+            if price is not None:
+                status = "OK"
+                if upper and upper > 0 and price >= upper:
+                    status = "ALERT - Above upper threshold"
+                elif lower and lower > 0 and price <= lower:
+                    status = "ALERT - Below lower threshold"
+                body += f"Status: {status}\n"
+
+            body += "-" * 50 + "\n\n"
+
+        body += "\nThis is an automated daily summary from StockTracker.\n"
+        return body

@@ -74,6 +74,39 @@ class StockTracker:
 
         logger.info("Stock check cycle completed")
 
+    def send_daily_summary(self):
+        """Send daily summary email with all stock prices and thresholds"""
+        logger.info("Preparing daily summary email...")
+
+        # Get tracked symbols
+        symbols = self.checker.get_tracked_symbols()
+        if not symbols:
+            logger.warning("No stocks configured for tracking")
+            return
+
+        # Get symbol to name mapping
+        symbol_to_name = self.checker.get_symbol_to_name_map()
+
+        # Fetch current prices
+        prices = self.fetcher.get_multiple_prices(symbols, symbol_to_name)
+
+        # Build stocks data for email
+        stocks_data = []
+        for stock_config in self.checker.stocks:
+            symbol = stock_config.get('symbol')
+            stock_info = {
+                'symbol': symbol,
+                'name': stock_config.get('name', ''),
+                'price': prices.get(symbol),
+                'upper_threshold': stock_config.get('upper_threshold'),
+                'lower_threshold': stock_config.get('lower_threshold')
+            }
+            stocks_data.append(stock_info)
+
+        # Send summary email
+        self.notifier.send_daily_summary(stocks_data)
+        logger.info("Daily summary email sent")
+
     def _display_price_summary(self, prices, symbol_to_name):
         """Display colored summary of stock prices vs thresholds"""
         print(f"\n{Style.BRIGHT}=== Stock Price Summary ==={Style.RESET_ALL}")
@@ -118,12 +151,23 @@ class StockTracker:
         # Run initial check immediately
         self.check_stocks()
 
+        # Send initial daily summary on startup
+        self.send_daily_summary()
+
         # Schedule periodic checks
         self.scheduler.add_job(
             self.check_stocks,
             'interval',
             minutes=check_interval,
             id='stock_check'
+        )
+
+        # Schedule daily summary email (every 24 hours)
+        self.scheduler.add_job(
+            self.send_daily_summary,
+            'interval',
+            hours=24,
+            id='daily_summary'
         )
 
         logger.info("Scheduler started. Press Ctrl+C to exit.")
