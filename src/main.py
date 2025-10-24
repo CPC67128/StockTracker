@@ -102,9 +102,9 @@ class StockTracker:
 
             # Print with color
             if is_within_thresholds:
-                print(f"{Fore.BLUE}{display_name}: €{price:.4f} [OK] (within thresholds){Style.RESET_ALL}")
+                print(f"{Fore.BLUE}{display_name}: {price:.4f}€ [OK] (within thresholds){Style.RESET_ALL}")
             else:
-                print(f"{Fore.RED}{display_name}: €{price:.4f} [ALERT] (threshold crossed!){Style.RESET_ALL}")
+                print(f"{Fore.RED}{display_name}: {price:.4f}€ [ALERT] (threshold crossed!){Style.RESET_ALL}")
 
         print()
 
