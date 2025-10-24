@@ -52,10 +52,16 @@ class EmailNotifier:
             message.attach(MIMEText(body, 'plain'))
 
             # Send email
-            with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
-                server.starttls()
-                server.login(self.sender_email, self.sender_password)
-                server.send_message(message)
+            # Use SMTP_SSL for port 465, regular SMTP with STARTTLS for port 587
+            if self.smtp_port == 465:
+                with smtplib.SMTP_SSL(self.smtp_server, self.smtp_port) as server:
+                    server.login(self.sender_email, self.sender_password)
+                    server.send_message(message)
+            else:
+                with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
+                    server.starttls()
+                    server.login(self.sender_email, self.sender_password)
+                    server.send_message(message)
 
             logger.info(f"Alert email sent successfully for {len(violations)} violation(s)")
             return True
