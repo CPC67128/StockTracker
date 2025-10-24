@@ -9,6 +9,10 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from stock_fetcher import StockFetcher
 from threshold_checker import ThresholdChecker
 from email_notifier import EmailNotifier
+from colorama import Fore, Style, init
+
+# Initialize colorama for Windows compatibility
+init(autoreset=True)
 
 # Load environment variables
 load_dotenv()
@@ -55,6 +59,9 @@ class StockTracker:
         # Fetch current prices
         prices = self.fetcher.get_multiple_prices(symbols, symbol_to_name)
 
+        # Display colored price summary
+        self._display_price_summary(prices, symbol_to_name)
+
         # Check for threshold violations
         violations = self.checker.check_thresholds(prices)
 
@@ -66,6 +73,40 @@ class StockTracker:
             logger.info("No threshold violations detected")
 
         logger.info("Stock check cycle completed")
+
+    def _display_price_summary(self, prices, symbol_to_name):
+        """Display colored summary of stock prices vs thresholds"""
+        print(f"\n{Style.BRIGHT}=== Stock Price Summary ==={Style.RESET_ALL}")
+
+        for stock_config in self.checker.stocks:
+            symbol = stock_config.get('symbol')
+            name = stock_config.get('name', '')
+            upper_threshold = stock_config.get('upper_threshold')
+            lower_threshold = stock_config.get('lower_threshold')
+
+            if symbol not in prices or prices[symbol] is None:
+                continue
+
+            price = prices[symbol]
+            display_name = f"{name} ({symbol})" if name else symbol
+
+            # Determine color based on threshold status
+            # Blue if within thresholds, Red if violated
+            is_within_thresholds = True
+
+            # Check if price violates thresholds
+            if upper_threshold and upper_threshold > 0 and price >= upper_threshold:
+                is_within_thresholds = False
+            if lower_threshold and lower_threshold > 0 and price <= lower_threshold:
+                is_within_thresholds = False
+
+            # Print with color
+            if is_within_thresholds:
+                print(f"{Fore.BLUE}{display_name}: €{price:.4f} [OK] (within thresholds){Style.RESET_ALL}")
+            else:
+                print(f"{Fore.RED}{display_name}: €{price:.4f} [ALERT] (threshold crossed!){Style.RESET_ALL}")
+
+        print()
 
     def run(self):
         """Start the stock tracker with scheduled checks"""
