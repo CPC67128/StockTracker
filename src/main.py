@@ -38,6 +38,7 @@ class StockTracker:
         self.checker = ThresholdChecker(config_path='config/stocks.json')
         self.notifier = EmailNotifier()
         self.scheduler = BlockingScheduler()
+        self.last_prices = {}  # Cache last fetched prices
 
     def check_stocks(self):
         """Main checking routine - fetches prices and checks thresholds"""
@@ -59,6 +60,9 @@ class StockTracker:
         # Fetch current prices
         prices = self.fetcher.get_multiple_prices(symbols, symbol_to_name)
 
+        # Cache the prices for potential reuse
+        self.last_prices = prices
+
         # Display colored price summary
         self._display_price_summary(prices, symbol_to_name)
 
@@ -78,17 +82,12 @@ class StockTracker:
         """Send daily summary email with all stock prices and thresholds"""
         logger.info("Preparing daily summary email...")
 
-        # Get tracked symbols
-        symbols = self.checker.get_tracked_symbols()
-        if not symbols:
-            logger.warning("No stocks configured for tracking")
+        # Use cached prices from last check_stocks() call
+        prices = self.last_prices
+
+        if not prices:
+            logger.warning("No cached prices available, skipping daily summary")
             return
-
-        # Get symbol to name mapping
-        symbol_to_name = self.checker.get_symbol_to_name_map()
-
-        # Fetch current prices
-        prices = self.fetcher.get_multiple_prices(symbols, symbol_to_name)
 
         # Build stocks data for email
         stocks_data = []
