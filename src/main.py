@@ -10,6 +10,7 @@ from stock_fetcher import StockFetcher
 from threshold_checker import ThresholdChecker
 from email_notifier import EmailNotifier
 from colorama import Fore, Style, init
+from datetime import datetime
 
 # Initialize colorama for Windows compatibility
 init(autoreset=True)
@@ -98,6 +99,7 @@ class StockTracker:
                 'name': stock_config.get('name', ''),
                 'price': prices.get(symbol),
                 'initial_value': stock_config.get('initial_value'),
+                'initial_date': stock_config.get('initial_date'),
                 'upper_threshold': stock_config.get('upper_threshold'),
                 'lower_threshold': stock_config.get('lower_threshold')
             }
@@ -117,6 +119,7 @@ class StockTracker:
             upper_threshold = stock_config.get('upper_threshold')
             lower_threshold = stock_config.get('lower_threshold')
             initial_value = stock_config.get('initial_value')
+            initial_date = stock_config.get('initial_date')
 
             if symbol not in prices or prices[symbol] is None:
                 continue
@@ -132,6 +135,25 @@ class StockTracker:
                     percentage = ((price - initial_value) / (upper_threshold - initial_value)) * 100
                     percentage_text = f" / {percentage:.1f}% to target"
 
+            # Calculate holding period (retention duration)
+            holding_text = ""
+            if initial_date:
+                try:
+                    purchase_date = datetime.strptime(initial_date, "%Y-%m-%d")
+                    today = datetime.now()
+                    days_held = (today - purchase_date).days
+
+                    # Format as years and days or just days
+                    if days_held >= 365:
+                        years = days_held // 365
+                        remaining_days = days_held % 365
+                        holding_text = f" / Held: {years}y {remaining_days}d"
+                    else:
+                        holding_text = f" / Held: {days_held}d"
+                except ValueError:
+                    # Invalid date format, skip
+                    pass
+
             # Determine color based on threshold status
             # Blue if within thresholds, Red if violated
             is_within_thresholds = True
@@ -144,9 +166,9 @@ class StockTracker:
 
             # Print with color
             if is_within_thresholds:
-                print(f"{Fore.BLUE}{display_name}: {price:.4f}€ [OK]{percentage_text}{Style.RESET_ALL}")
+                print(f"{Fore.BLUE}{display_name}: {price:.4f}€ [OK]{percentage_text}{holding_text}{Style.RESET_ALL}")
             else:
-                print(f"{Fore.RED}{display_name}: {price:.4f}€ [ALERT] (threshold crossed!){percentage_text}{Style.RESET_ALL}")
+                print(f"{Fore.RED}{display_name}: {price:.4f}€ [ALERT] (threshold crossed!){percentage_text}{holding_text}{Style.RESET_ALL}")
 
         print()
 

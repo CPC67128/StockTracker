@@ -8,6 +8,7 @@ from email.mime.multipart import MIMEMultipart
 from typing import List, Dict
 import logging
 import os
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -212,6 +213,7 @@ class EmailNotifier:
             upper = stock.get('upper_threshold')
             lower = stock.get('lower_threshold')
             initial = stock.get('initial_value')
+            initial_date = stock.get('initial_date')
 
             # Build display name
             display_name = f"{name} ({symbol})" if name else symbol
@@ -228,6 +230,25 @@ class EmailNotifier:
                     percentage = ((price - initial) / (upper - initial)) * 100
                     percentage_text = f" - {percentage:.1f}% to target"
 
+            # Calculate holding period (retention duration)
+            holding_text = ""
+            if initial_date:
+                try:
+                    purchase_date = datetime.strptime(initial_date, "%Y-%m-%d")
+                    today = datetime.now()
+                    days_held = (today - purchase_date).days
+
+                    # Format as years and days or just days
+                    if days_held >= 365:
+                        years = days_held // 365
+                        remaining_days = days_held % 365
+                        holding_text = f" - Held: {years}y {remaining_days}d"
+                    else:
+                        holding_text = f" - Held: {days_held}d"
+                except ValueError:
+                    # Invalid date format, skip
+                    pass
+
             # Determine status and color
             is_alert = False
             if price is not None:
@@ -242,9 +263,9 @@ class EmailNotifier:
                 status_text = "[ALERT]" if is_alert else "[OK]"
                 css_class = "stock-alert" if is_alert else "stock-ok"
 
-                html += f'<div class="{css_class}">{display_name}: {price_text} {status_text} (Upper: {upper_text}, Lower: {lower_text}){percentage_text}</div>\n'
+                html += f'<div class="{css_class}">{display_name}: {price_text} {status_text} (Upper: {upper_text}, Lower: {lower_text}){percentage_text}{holding_text}</div>\n'
             else:
-                html += f'<div class="stock-ok">{display_name}: N/A (Upper: {upper_text}, Lower: {lower_text})</div>\n'
+                html += f'<div class="stock-ok">{display_name}: N/A (Upper: {upper_text}, Lower: {lower_text}){holding_text}</div>\n'
 
         html += """
             <div class="footer">This is an automated daily summary from StockTracker.</div>
