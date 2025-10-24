@@ -25,31 +25,72 @@ class WebScraper:
             'Connection': 'keep-alive',
         })
 
+    def _convert_to_boursorama_symbol(self, symbol: str) -> str:
+        """
+        Convert stock symbol or ISIN to Boursorama format
+
+        Args:
+            symbol: Stock symbol (e.g., 'AAPL', 'MC') or ISIN (e.g., 'FR0000033904')
+
+        Returns:
+            Boursorama symbol format
+        """
+        # Check if it's an ISIN code (FR, US, DE, etc. followed by numbers)
+        if len(symbol) == 12 and symbol[:2].isalpha() and symbol[2:].isalnum():
+            # ISIN format: just use it directly, Boursorama accepts ISIN in search
+            # We'll use the search-based approach for ISIN
+            return symbol
+
+        # For regular symbols:
+        # French CAC40 stocks: 1rP{SYMBOL} (e.g., 1rPMC for LVMH)
+        # US stocks: 1rP{SYMBOL} (e.g., 1rPAAPL for Apple)
+        return f"1rP{symbol}"
+
     def get_price_from_boursorama(self, symbol: str) -> Optional[float]:
         """
         Fetch stock price from Boursorama (French financial site)
 
         Args:
-            symbol: Stock ticker symbol (e.g., 'AAPL', 'MSFT')
+            symbol: Stock ticker symbol (e.g., 'MC', 'OR') or ISIN (e.g., 'FR0000033904')
 
         Returns:
             Current stock price or None if fetch fails
         """
         try:
-            # Boursorama uses format like: /cours/1rPAPPL/ for Apple
-            # We need to convert symbol to Boursorama format
-            # For US stocks, typically: 1rP{SYMBOL}
-            boursorama_symbol = f"1rP{symbol}"
-            url = f"https://www.boursorama.com/cours/{boursorama_symbol}/"
+            # Check if symbol is an ISIN code
+            is_isin = len(symbol) == 12 and symbol[:2].isalpha()
 
-            logger.info(f"Fetching {symbol} from Boursorama: {url}")
-            response = self.session.get(url, timeout=10)
+            if is_isin:
+                # For ISIN, use Boursorama search API or direct URL
+                # Try the ISIN-based URL format
+                url = f"https://www.boursorama.com/recherche/?query={symbol}"
+                logger.info(f"Searching Boursorama for ISIN {symbol}: {url}")
 
-            if response.status_code != 200:
-                logger.warning(f"Boursorama returned status {response.status_code} for {symbol}")
-                return None
+                response = self.session.get(url, timeout=10)
+                if response.status_code == 200:
+                    soup = BeautifulSoup(response.text, 'lxml')
+                    # Find the first stock result link
+                    stock_link = soup.select_one('a[href*="/cours/"]')
+                    if stock_link:
+                        stock_url = stock_link.get('href')
+                        if stock_url.startswith('/'):
+                            stock_url = f"https://www.boursorama.com{stock_url}"
+                        logger.info(f"Found stock page: {stock_url}")
+                        response = self.session.get(stock_url, timeout=10)
+                        soup = BeautifulSoup(response.text, 'lxml')
+            else:
+                # Regular symbol
+                boursorama_symbol = self._convert_to_boursorama_symbol(symbol)
+                url = f"https://www.boursorama.com/cours/{boursorama_symbol}/"
 
-            soup = BeautifulSoup(response.text, 'lxml')
+                logger.info(f"Fetching {symbol} from Boursorama: {url}")
+                response = self.session.get(url, timeout=10)
+
+                if response.status_code != 200:
+                    logger.warning(f"Boursorama returned status {response.status_code} for {symbol}")
+                    return None
+
+                soup = BeautifulSoup(response.text, 'lxml')
 
             # Look for the price in common CSS selectors
             # Boursorama typically has price in a span with specific classes
@@ -58,16 +99,21 @@ class WebScraper:
                 'span.c-faceplate__price',
                 'div.c-faceplate__price span',
                 '[data-ist-last]',
+                'span[class*="c-instrument"]',
+                'div[class*="c-faceplate"]',
+                # New selectors for 2024+ Boursorama layout
+                'span.c-instrument__val',
+                'div.c-price',
             ]
 
             for selector in price_selectors:
                 price_elem = soup.select_one(selector)
                 if price_elem:
                     price_text = price_elem.get_text(strip=True)
-                    # Extract number from text (handle formats like "175,50 USD" or "175.50")
+                    # Extract number from text (handle formats like "175,50 EUR" or "175.50")
                     price = self._extract_price(price_text)
                     if price:
-                        logger.info(f"Fetched {symbol} from Boursorama: ${price:.2f}")
+                        logger.info(f"Fetched {symbol} from Boursorama: €{price:.2f}")
                         return price
 
             logger.warning(f"Could not find price element for {symbol} on Boursorama")
@@ -227,14 +273,23 @@ class WebScraper:
         Fetch stock price trying multiple sources in order
 
         Args:
-            symbol: Stock ticker symbol
-            sources: List of sources to try (default: all)
+            symbol: Stock ticker symbol or ISIN code
+            sources: List of sources to try (default: auto-detect based on symbol)
 
         Returns:
             Current stock price or None if all sources fail
         """
         if sources is None:
-            sources = ['google', 'marketwatch', 'boursorama']
+            # Auto-detect best sources based on symbol format
+            # If it looks like an ISIN (FR, DE, US + 10 chars) or French symbol, prioritize Boursorama
+            is_isin = len(symbol) == 12 and symbol[:2].isalpha()
+            is_french = symbol[:2] == 'FR' or len(symbol) <= 4  # French tickers are usually short
+
+            if is_isin or is_french:
+                sources = ['boursorama', 'google', 'marketwatch']
+                logger.info(f"Detected French/ISIN stock {symbol}, prioritizing Boursorama")
+            else:
+                sources = ['marketwatch', 'google', 'boursorama']
 
         for source in sources:
             try:

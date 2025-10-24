@@ -1,0 +1,61 @@
+{
+  "comment": "Example configuration for French PEA (Plan d'Épargne en Actions)",
+  "stocks": [
+    {
+      "symbol": "FR0000121014",
+      "name": "LVMH Moët Hennessy Louis Vuitton",
+      "sector": "Luxe",
+      "upper_threshold": 700.0,
+      "lower_threshold": 600.0
+    },
+    {
+      "symbol": "FR0000120271",
+      "name": "TotalEnergies",
+      "sector": "Énergie",
+      "upper_threshold": 60.0,
+      "lower_threshold": 50.0
+    },
+    {
+      "symbol": "FR0000120073",
+      "name": "Air Liquide",
+      "sector": "Gaz industriels",
+      "upper_threshold": 180.0,
+      "lower_threshold": 165.0
+    },
+    {
+      "symbol": "FR0000120578",
+      "name": "Sanofi",
+      "sector": "Pharmaceutique",
+      "upper_threshold": 105.0,
+      "lower_threshold": 90.0
+    },
+    {
+      "symbol": "FR0000120321",
+      "name": "L'Oréal",
+      "sector": "Cosmétiques",
+      "upper_threshold": 450.0,
+      "lower_threshold": 400.0
+    },
+    {
+      "symbol": "FR0000131104",
+      "name": "BNP Paribas",
+      "sector": "Banque",
+      "upper_threshold": 70.0,
+      "lower_threshold": 60.0
+    },
+    {
+      "symbol": "FR0000120628",
+      "name": "AXA",
+      "sector": "Assurance",
+      "upper_threshold": 35.0,
+      "lower_threshold": 28.0
+    },
+    {
+      "symbol": "FR0000121972",
+      "name": "Schneider Electric",
+      "sector": "Électrique",
+      "upper_threshold": 250.0,
+      "lower_threshold": 220.0
+    }
+  ]
+}

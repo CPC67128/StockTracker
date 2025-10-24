@@ -6,6 +6,7 @@ A Python-based stock monitoring application that tracks stock prices and sends e
 
 - Real-time stock price monitoring using Yahoo Finance **or web scraping**
 - **Multiple data sources** (Google Finance, MarketWatch, Boursorama)
+- **French PEA support** - Track French stocks using ISIN codes (e.g., FR0000121014)
 - **No API rate limits** with web scraping mode
 - Configurable upper and lower price thresholds per stock
 - Email notifications when thresholds are crossed
@@ -13,6 +14,7 @@ A Python-based stock monitoring application that tracks stock prices and sends e
 - Docker containerized for portable deployment
 - Simple JSON-based configuration
 - Automatic fallback between data sources
+- Supports both US and European stock markets
 
 ## Project Structure
 
@@ -34,7 +36,8 @@ StockTracker/
 ├── .env.example              # Environment variables template
 ├── README.md                  # This file
 ├── TROUBLESHOOTING.md         # Troubleshooting guide
-└── WEB_SCRAPING.md           # Web scraping guide
+├── WEB_SCRAPING.md           # Web scraping guide
+└── FRENCH_PEA_GUIDE.md       # Guide for French PEA stocks
 ```
 
 ## Prerequisites
@@ -166,6 +169,39 @@ USE_WEB_SCRAPING=true
 - ✅ More reliable for production use
 
 See [WEB_SCRAPING.md](WEB_SCRAPING.md) for detailed information.
+
+### French PEA (Plan d'Épargne en Actions)
+
+**Track French stocks using ISIN codes!**
+
+StockTracker fully supports French stocks with ISIN codes (e.g., `FR0000121014` for LVMH):
+
+```json
+{
+  "stocks": [
+    {
+      "symbol": "FR0000121014",
+      "name": "LVMH",
+      "upper_threshold": 700.0,
+      "lower_threshold": 600.0
+    },
+    {
+      "symbol": "FR0000120271",
+      "name": "TotalEnergies",
+      "upper_threshold": 60.0,
+      "lower_threshold": 50.0
+    }
+  ]
+}
+```
+
+**Benefits:**
+- ✅ Uses Boursorama (French financial site) for accurate pricing
+- ✅ Automatically detects ISIN codes and prioritizes French sources
+- ✅ Supports all CAC 40 and French stocks
+- ✅ Prices in EUR (€)
+
+See [FRENCH_PEA_GUIDE.md](FRENCH_PEA_GUIDE.md) for complete guide with CAC 40 ISIN codes.
 
 ### Common Email Providers
 
