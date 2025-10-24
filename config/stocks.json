@@ -1,11 +1,12 @@
 {
-  "comment": "Example configuration for French PEA (Plan d'Épargne en Actions). Set threshold to -1 to disable that check. initial_value is the purchase price, initial_quantity is the number of shares purchased.",
+  "comment": "Example configuration for French PEA (Plan d'Épargne en Actions). Set threshold to -1 to disable that check. initial_value is the purchase price, initial_quantity is the number of shares purchased, initial_date is the purchase date (YYYY-MM-DD).",
   "stocks": [
     {
       "symbol": "FR0013341781",
       "name": "2CRSI",
       "initial_value": 13.928,
       "initial_quantity": 0,
+      "initial_date": "2024-01-01",
       "upper_threshold": 16,
       "lower_threshold": -1
     },
@@ -14,6 +15,7 @@
       "name": "BANIJAY GROUP",
       "initial_value": 9.246,
       "initial_quantity": 0,
+      "initial_date": "2024-01-01",
       "upper_threshold": 12,
       "lower_threshold": -1
     },
@@ -22,6 +24,7 @@
       "name": "EIFFAGE",
       "initial_value": 110.483,
       "initial_quantity": 0,
+      "initial_date": "2024-01-01",
       "upper_threshold": 135,
       "lower_threshold": -1
     },
@@ -30,6 +33,7 @@
       "name": "ENOGIA",
       "initial_value": 4.723,
       "initial_quantity": 0,
+      "initial_date": "2024-01-01",
       "upper_threshold": 5.5,
       "lower_threshold": -1
     },
@@ -38,6 +42,7 @@
       "name": "EXOSENS",
       "initial_value": 50.650,
       "initial_quantity": 0,
+      "initial_date": "2024-01-01",
       "upper_threshold": 55,
       "lower_threshold": -1
     },
@@ -46,6 +51,7 @@
       "name": "THALES",
       "initial_value": 260.210,
       "initial_quantity": 0,
+      "initial_date": "2024-01-01",
       "upper_threshold": 315,
       "lower_threshold": -1
     },
@@ -54,6 +60,7 @@
       "name": "TF1",
       "initial_value": 8.586,
       "initial_quantity": 0,
+      "initial_date": "2024-01-01",
       "upper_threshold": 10,
       "lower_threshold": -1
     },
@@ -62,6 +69,7 @@
       "name": "VUSIONGROUP",
       "initial_value": 245.380,
       "initial_quantity": 0,
+      "initial_date": "2024-01-01",
       "upper_threshold": 300,
       "lower_threshold": -1
     },
@@ -70,6 +78,7 @@
       "name": "WENDEL",
       "initial_value": 82.940,
       "initial_quantity": 0,
+      "initial_date": "2024-01-01",
       "upper_threshold": 105,
       "lower_threshold": -1
     },
@@ -78,6 +87,7 @@
       "name": "Rheinmetall",
       "initial_value": 1839.150,
       "initial_quantity": 0,
+      "initial_date": "2024-01-01",
       "upper_threshold": 2200,
       "lower_threshold": -1
     },
@@ -87,6 +97,7 @@
       "sector": "TEST",
       "initial_value": 30,
       "initial_quantity": 0,
+      "initial_date": "2024-01-01",
       "upper_threshold": 45,
       "lower_threshold": -1
     }
