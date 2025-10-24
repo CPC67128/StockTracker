@@ -40,6 +40,10 @@ class ThresholdChecker:
 
         Returns:
             List of threshold violations with details
+
+        Note:
+            - Set threshold to -1 to disable that threshold check
+            - Set threshold to None or omit it to disable that threshold check
         """
         violations = []
 
@@ -55,7 +59,8 @@ class ThresholdChecker:
             current_price = prices[symbol]
 
             # Check upper threshold
-            if upper_threshold and current_price >= upper_threshold:
+            # Skip if threshold is None, 0, or -1 (disabled)
+            if upper_threshold is not None and upper_threshold > 0 and current_price >= upper_threshold:
                 violations.append({
                     'symbol': symbol,
                     'current_price': current_price,
@@ -66,7 +71,8 @@ class ThresholdChecker:
                 logger.info(f"Upper threshold violation: {symbol} at ${current_price:.2f}")
 
             # Check lower threshold
-            if lower_threshold and current_price <= lower_threshold:
+            # Skip if threshold is None, 0, or -1 (disabled)
+            if lower_threshold is not None and lower_threshold > 0 and current_price <= lower_threshold:
                 violations.append({
                     'symbol': symbol,
                     'current_price': current_price,

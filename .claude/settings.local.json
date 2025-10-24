@@ -10,7 +10,8 @@
       "Bash(python:*)",
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: StockTracker - Stock price monitoring with email alerts\n\nFeatures:\n- Real-time stock price monitoring with dual data sources (Yahoo Finance API & web scraping)\n- Multiple web scraping sources (Google Finance, MarketWatch, Boursorama) to avoid API rate limits\n- Configurable upper/lower price thresholds per stock\n- Email notifications via SMTP when thresholds are crossed\n- Scheduled periodic checks with configurable intervals (APScheduler)\n- Automatic fallback between data sources for reliability\n- Docker containerization for easy deployment\n- Comprehensive error handling and retry logic\n- Detailed logging to file and console\n\nProject structure:\n- src/stock_fetcher.py: Multi-source stock price fetching (API + web scraping)\n- src/web_scraper.py: Web scraping implementation with multiple sources\n- src/threshold_checker.py: Price threshold comparison logic\n- src/email_notifier.py: SMTP email alert system\n- src/main.py: Main application with scheduler\n- config/stocks.json: Stock symbols and threshold configuration\n- Dockerfile & docker-compose.yml: Container deployment\n- README.md: Complete setup and usage guide\n- WEB_SCRAPING.md: Detailed web scraping documentation\n- TROUBLESHOOTING.md: Common issues and solutions\n- .claude/: Claude Code project context and commands\n\nConfiguration:\n- Environment-based configuration (.env)\n- JSON-based stock configuration\n- Toggle between API and web scraping modes\n- Support for multiple email providers\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

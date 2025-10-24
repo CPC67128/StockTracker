@@ -137,11 +137,43 @@ python src/main.py
 
 ### Stock Configuration (`config/stocks.json`)
 
-- `symbol`: Stock ticker symbol (e.g., "AAPL", "GOOGL")
+- `symbol`: Stock ticker symbol (e.g., "AAPL", "GOOGL") or ISIN code (e.g., "FR0000121014")
 - `upper_threshold`: Alert when price goes above this value (optional)
 - `lower_threshold`: Alert when price goes below this value (optional)
 
-You can omit either threshold if you only want to track one direction.
+**Disabling Thresholds:**
+
+You can disable threshold checking in three ways:
+1. **Omit the field** entirely
+2. **Set to `-1`** (recommended - more explicit)
+3. **Set to `0`**
+
+**Examples:**
+
+```json
+{
+  "stocks": [
+    {
+      "symbol": "AAPL",
+      "upper_threshold": 300.0,
+      "lower_threshold": -1,
+      "comment": "Only alert when price goes UP, ignore drops"
+    },
+    {
+      "symbol": "GOOGL",
+      "upper_threshold": -1,
+      "lower_threshold": 200.0,
+      "comment": "Only alert when price DROPS, ignore gains"
+    },
+    {
+      "symbol": "MSFT",
+      "upper_threshold": 500.0,
+      "lower_threshold": 400.0,
+      "comment": "Alert on both upper and lower thresholds"
+    }
+  ]
+}
+```
 
 ### Environment Variables (`.env`)
 

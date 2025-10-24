@@ -1,5 +1,5 @@
 {
-  "comment": "Example configuration for French PEA (Plan d'Épargne en Actions)",
+  "comment": "Example configuration for French PEA (Plan d'Épargne en Actions). Set threshold to -1 to disable that check.",
   "stocks": [
     {
       "symbol": "FR0000121014",
@@ -56,6 +56,14 @@
       "sector": "Électrique",
       "upper_threshold": 250.0,
       "lower_threshold": 220.0
+    },
+    {
+      "symbol": "FR0000120578",
+      "name": "Airbus (only monitor for selling)",
+      "sector": "Aéronautique",
+      "upper_threshold": 150.0,
+      "lower_threshold": -1,
+      "comment": "Already own - only alert when price reaches sell target"
     }
   ]
 }
