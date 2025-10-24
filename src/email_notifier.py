@@ -116,9 +116,9 @@ class EmailNotifier:
             message['To'] = self.recipient_email
             message['Subject'] = 'Stock Price Summary - Daily Report'
 
-            # Build email body
-            body = self._build_summary_body(stocks_data)
-            message.attach(MIMEText(body, 'plain'))
+            # Build HTML email body
+            html_body = self._build_summary_html(stocks_data)
+            message.attach(MIMEText(html_body, 'html'))
 
             # Send email
             # Use SMTP_SSL for port 465, regular SMTP with STARTTLS for port 587
@@ -186,3 +186,61 @@ class EmailNotifier:
 
         body += "\nThis is an automated daily summary from StockTracker.\n"
         return body
+
+    def _build_summary_html(self, stocks_data: List[Dict]) -> str:
+        """Build HTML email body for daily summary with colored lines"""
+        html = """
+        <html>
+        <head>
+            <style>
+                body { font-family: 'Courier New', monospace; font-size: 14px; }
+                .header { font-weight: bold; font-size: 16px; margin-bottom: 20px; }
+                .stock-ok { color: #0066cc; margin: 5px 0; }
+                .stock-alert { color: #cc0000; margin: 5px 0; }
+                .footer { margin-top: 20px; font-size: 12px; color: #666; }
+            </style>
+        </head>
+        <body>
+            <div class="header">Stock Price Summary - Daily Report</div>
+        """
+
+        for stock in stocks_data:
+            # Get stock info
+            name = stock.get('name', '')
+            symbol = stock.get('symbol')
+            price = stock.get('price')
+            upper = stock.get('upper_threshold')
+            lower = stock.get('lower_threshold')
+
+            # Build display name
+            display_name = f"{name} ({symbol})" if name else symbol
+
+            # Format thresholds
+            upper_text = f"{upper:.4f}€" if (upper and upper > 0) else "Not set"
+            lower_text = f"{lower:.4f}€" if (lower and lower > 0) else "Not set"
+
+            # Determine status and color
+            is_alert = False
+            if price is not None:
+                if upper and upper > 0 and price >= upper:
+                    is_alert = True
+                elif lower and lower > 0 and price <= lower:
+                    is_alert = True
+
+            # Build line
+            if price is not None:
+                price_text = f"{price:.4f}€"
+                status_text = "[ALERT]" if is_alert else "[OK]"
+                css_class = "stock-alert" if is_alert else "stock-ok"
+
+                html += f'<div class="{css_class}">{display_name}: {price_text} {status_text} (Upper: {upper_text}, Lower: {lower_text})</div>\n'
+            else:
+                html += f'<div class="stock-ok">{display_name}: N/A (Upper: {upper_text}, Lower: {lower_text})</div>\n'
+
+        html += """
+            <div class="footer">This is an automated daily summary from StockTracker.</div>
+        </body>
+        </html>
+        """
+
+        return html
