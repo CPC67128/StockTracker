@@ -45,7 +45,9 @@ class StockTracker:
             logger.warning("No stocks configured for tracking")
             return
 
-        logger.info(f"Tracking {len(symbols)} stocks: {', '.join(symbols)}")
+        # Get display names for logging
+        display_names = self.checker.get_stock_display_names()
+        logger.info(f"Tracking {len(symbols)} stocks: {', '.join(display_names)}")
 
         # Fetch current prices
         prices = self.fetcher.get_multiple_prices(symbols)

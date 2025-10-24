@@ -49,11 +49,15 @@ class ThresholdChecker:
 
         for stock_config in self.stocks:
             symbol = stock_config.get('symbol')
+            name = stock_config.get('name', '')
             upper_threshold = stock_config.get('upper_threshold')
             lower_threshold = stock_config.get('lower_threshold')
 
+            # Create display name (show name if available, otherwise just symbol)
+            display_name = f"{name} ({symbol})" if name else symbol
+
             if symbol not in prices or prices[symbol] is None:
-                logger.warning(f"No price data for {symbol}")
+                logger.warning(f"No price data for {display_name}")
                 continue
 
             current_price = prices[symbol]
@@ -63,27 +67,41 @@ class ThresholdChecker:
             if upper_threshold is not None and upper_threshold > 0 and current_price >= upper_threshold:
                 violations.append({
                     'symbol': symbol,
+                    'name': name,
+                    'display_name': display_name,
                     'current_price': current_price,
                     'threshold': upper_threshold,
                     'threshold_type': 'upper',
-                    'message': f"{symbol} reached ${current_price:.4f} (threshold: ${upper_threshold:.4f})"
+                    'message': f"{display_name} reached ${current_price:.4f} (threshold: ${upper_threshold:.4f})"
                 })
-                logger.info(f"Upper threshold violation: {symbol} at ${current_price:.4f}")
+                logger.info(f"Upper threshold violation: {display_name} at ${current_price:.4f}")
 
             # Check lower threshold
             # Skip if threshold is None, 0, or -1 (disabled)
             if lower_threshold is not None and lower_threshold > 0 and current_price <= lower_threshold:
                 violations.append({
                     'symbol': symbol,
+                    'name': name,
+                    'display_name': display_name,
                     'current_price': current_price,
                     'threshold': lower_threshold,
                     'threshold_type': 'lower',
-                    'message': f"{symbol} dropped to ${current_price:.4f} (threshold: ${lower_threshold:.4f})"
+                    'message': f"{display_name} dropped to ${current_price:.4f} (threshold: ${lower_threshold:.4f})"
                 })
-                logger.info(f"Lower threshold violation: {symbol} at ${current_price:.4f}")
+                logger.info(f"Lower threshold violation: {display_name} at ${current_price:.4f}")
 
         return violations
 
     def get_tracked_symbols(self) -> List[str]:
         """Get list of all tracked stock symbols"""
         return [stock.get('symbol') for stock in self.stocks if stock.get('symbol')]
+
+    def get_stock_display_names(self) -> List[str]:
+        """Get list of display names (name + symbol or just symbol)"""
+        display_names = []
+        for stock in self.stocks:
+            symbol = stock.get('symbol')
+            name = stock.get('name', '')
+            if symbol:
+                display_names.append(f"{name} ({symbol})" if name else symbol)
+        return display_names

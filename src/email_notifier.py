@@ -70,7 +70,13 @@ class EmailNotifier:
         body += "=" * 50 + "\n\n"
 
         for violation in violations:
-            body += f"Symbol: {violation['symbol']}\n"
+            # Show name if available
+            if violation.get('name'):
+                body += f"Stock: {violation['name']}\n"
+                body += f"Symbol: {violation['symbol']}\n"
+            else:
+                body += f"Symbol: {violation['symbol']}\n"
+
             body += f"Current Price: ${violation['current_price']:.4f}\n"
             body += f"Threshold ({violation['threshold_type']}): ${violation['threshold']:.4f}\n"
             body += f"Status: {violation['message']}\n"

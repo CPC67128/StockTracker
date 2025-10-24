@@ -7,6 +7,18 @@
       "sector": "Luxe",
       "upper_threshold": 300,
       "lower_threshold": -1
+    },
+    {
+      "symbol": "FR0000125007",
+      "name": "Saint-Gobain",
+      "upper_threshold": 120,
+      "lower_threshold": -1
+    },
+    {
+      "symbol": "FR0000125007",
+      "name": "Saint-Gobain",
+      "upper_threshold": 120,
+      "lower_threshold": -1
     }
   ]
 }
