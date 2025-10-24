@@ -46,7 +46,7 @@
     {
       "symbol": "FR0000121204",
       "name": "WENDEL",
-      "upper_threshold": 82,
+      "upper_threshold": 105,
       "lower_threshold": -1
     },
     {
