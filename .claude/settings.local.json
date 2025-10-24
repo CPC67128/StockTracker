@@ -14,7 +14,8 @@
       "Bash(git commit:*)",
       "Bash(powershell -Command:*)",
       "Bash(del:*)",
-      "Bash(docker --version:*)"
+      "Bash(docker --version:*)",
+      "Bash(timeout 10 python:*)"
     ],
     "deny": [],
     "ask": []
