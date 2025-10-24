@@ -74,7 +74,7 @@ class StockFetcher:
 
                         if not data.empty:
                             current_price = data['Close'].iloc[-1]
-                            logger.info(f"Fetched {symbol}: ${current_price:.2f} (period: {period})")
+                            logger.info(f"Fetched {symbol}: ${current_price:.4f} (period: {period})")
                             return float(current_price)
                     except Exception as period_error:
                         logger.debug(f"Period {period} failed for {symbol}: {str(period_error)}")
@@ -85,11 +85,11 @@ class StockFetcher:
                     info = ticker.info
                     if info and 'currentPrice' in info:
                         current_price = info['currentPrice']
-                        logger.info(f"Fetched {symbol} from info: ${current_price:.2f}")
+                        logger.info(f"Fetched {symbol} from info: ${current_price:.4f}")
                         return float(current_price)
                     elif info and 'regularMarketPrice' in info:
                         current_price = info['regularMarketPrice']
-                        logger.info(f"Fetched {symbol} from regularMarketPrice: ${current_price:.2f}")
+                        logger.info(f"Fetched {symbol} from regularMarketPrice: ${current_price:.4f}")
                         return float(current_price)
                 except Exception as info_error:
                     logger.debug(f"Info fallback failed for {symbol}: {str(info_error)}")

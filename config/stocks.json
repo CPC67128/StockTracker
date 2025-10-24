@@ -1,22 +1,12 @@
 {
-  "comment": "Set threshold to -1 to disable checking (e.g., only track upper limit)",
+  "comment": "Example configuration for French PEA (Plan d'Épargne en Actions). Set threshold to -1 to disable that check.",
   "stocks": [
     {
-      "symbol": "AAPL",
-      "upper_threshold": 300.0,
-      "lower_threshold": 200.0
-    },
-    {
-      "symbol": "GOOGL",
-      "upper_threshold": 200.0,
-      "lower_threshold": -1,
-      "comment": "Only alert when price goes above 200, ignore lower threshold"
-    },
-    {
-      "symbol": "MSFT",
-      "upper_threshold": -1,
-      "lower_threshold": 400.0,
-      "comment": "Only alert when price drops below 400, ignore upper threshold"
+      "symbol": "FR0010282822",
+      "name": "VusionGroup",
+      "sector": "Luxe",
+      "upper_threshold": 300,
+      "lower_threshold": -1
     }
   ]
 }

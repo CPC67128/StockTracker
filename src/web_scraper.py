@@ -113,7 +113,7 @@ class WebScraper:
                     # Extract number from text (handle formats like "175,50 EUR" or "175.50")
                     price = self._extract_price(price_text)
                     if price:
-                        logger.info(f"Fetched {symbol} from Boursorama: €{price:.2f}")
+                        logger.info(f"Fetched {symbol} from Boursorama: €{price:.4f}")
                         return price
 
             logger.warning(f"Could not find price element for {symbol} on Boursorama")
@@ -165,7 +165,7 @@ class WebScraper:
                     price_text = price_elem.get_text(strip=True)
                     price = self._extract_price(price_text)
                     if price:
-                        logger.info(f"Fetched {symbol} from Google Finance: ${price:.2f}")
+                        logger.info(f"Fetched {symbol} from Google Finance: ${price:.4f}")
                         return price
 
             logger.warning(f"Could not find price element for {symbol} on Google Finance")
@@ -210,7 +210,7 @@ class WebScraper:
                     price_text = price_elem.get_text(strip=True)
                     price = self._extract_price(price_text)
                     if price:
-                        logger.info(f"Fetched {symbol} from MarketWatch: ${price:.2f}")
+                        logger.info(f"Fetched {symbol} from MarketWatch: ${price:.4f}")
                         return price
 
             logger.warning(f"Could not find price element for {symbol} on MarketWatch")

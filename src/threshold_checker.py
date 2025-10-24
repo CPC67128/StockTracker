@@ -66,9 +66,9 @@ class ThresholdChecker:
                     'current_price': current_price,
                     'threshold': upper_threshold,
                     'threshold_type': 'upper',
-                    'message': f"{symbol} reached ${current_price:.2f} (threshold: ${upper_threshold:.2f})"
+                    'message': f"{symbol} reached ${current_price:.4f} (threshold: ${upper_threshold:.4f})"
                 })
-                logger.info(f"Upper threshold violation: {symbol} at ${current_price:.2f}")
+                logger.info(f"Upper threshold violation: {symbol} at ${current_price:.4f}")
 
             # Check lower threshold
             # Skip if threshold is None, 0, or -1 (disabled)
@@ -78,9 +78,9 @@ class ThresholdChecker:
                     'current_price': current_price,
                     'threshold': lower_threshold,
                     'threshold_type': 'lower',
-                    'message': f"{symbol} dropped to ${current_price:.2f} (threshold: ${lower_threshold:.2f})"
+                    'message': f"{symbol} dropped to ${current_price:.4f} (threshold: ${lower_threshold:.4f})"
                 })
-                logger.info(f"Lower threshold violation: {symbol} at ${current_price:.2f}")
+                logger.info(f"Lower threshold violation: {symbol} at ${current_price:.4f}")
 
         return violations
 
