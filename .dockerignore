@@ -1,0 +1,35 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+
+# Data (will be mounted as volumes)
+data/stocktracker.log
+
+# Documentation
+README.md
+LICENSE
+
+# Docker
+docker-compose.yml
+Dockerfile
+.dockerignore

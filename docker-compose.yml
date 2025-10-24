@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  stocktracker:
+    build: .
+    container_name: stocktracker
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config:ro
+      - ./data:/app/data
+    env_file:
+      - .env
+    environment:
+      - TZ=UTC
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

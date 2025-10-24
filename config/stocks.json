@@ -1,0 +1,19 @@
+{
+  "stocks": [
+    {
+      "symbol": "AAPL",
+      "upper_threshold": 200.0,
+      "lower_threshold": 150.0
+    },
+    {
+      "symbol": "GOOGL",
+      "upper_threshold": 180.0,
+      "lower_threshold": 140.0
+    },
+    {
+      "symbol": "MSFT",
+      "upper_threshold": 450.0,
+      "lower_threshold": 400.0
+    }
+  ]
+}

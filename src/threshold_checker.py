@@ -1,0 +1,83 @@
+"""
+Threshold Checker Module
+Checks if stock prices have crossed defined thresholds
+"""
+import json
+import os
+from typing import Dict, List, Optional
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+class ThresholdChecker:
+    """Manages stock thresholds and checks for threshold violations"""
+
+    def __init__(self, config_path: str = "config/stocks.json"):
+        self.config_path = config_path
+        self.stocks = self.load_stocks()
+
+    def load_stocks(self) -> List[Dict]:
+        """Load stock threshold configuration from JSON file"""
+        if not os.path.exists(self.config_path):
+            logger.warning(f"Config file not found: {self.config_path}")
+            return []
+
+        try:
+            with open(self.config_path, 'r') as f:
+                data = json.load(f)
+                return data.get('stocks', [])
+        except Exception as e:
+            logger.error(f"Error loading stock config: {str(e)}")
+            return []
+
+    def check_thresholds(self, prices: Dict[str, Optional[float]]) -> List[Dict]:
+        """
+        Check if any stock prices have crossed their thresholds
+
+        Args:
+            prices: Dictionary mapping stock symbols to current prices
+
+        Returns:
+            List of threshold violations with details
+        """
+        violations = []
+
+        for stock_config in self.stocks:
+            symbol = stock_config.get('symbol')
+            upper_threshold = stock_config.get('upper_threshold')
+            lower_threshold = stock_config.get('lower_threshold')
+
+            if symbol not in prices or prices[symbol] is None:
+                logger.warning(f"No price data for {symbol}")
+                continue
+
+            current_price = prices[symbol]
+
+            # Check upper threshold
+            if upper_threshold and current_price >= upper_threshold:
+                violations.append({
+                    'symbol': symbol,
+                    'current_price': current_price,
+                    'threshold': upper_threshold,
+                    'threshold_type': 'upper',
+                    'message': f"{symbol} reached ${current_price:.2f} (threshold: ${upper_threshold:.2f})"
+                })
+                logger.info(f"Upper threshold violation: {symbol} at ${current_price:.2f}")
+
+            # Check lower threshold
+            if lower_threshold and current_price <= lower_threshold:
+                violations.append({
+                    'symbol': symbol,
+                    'current_price': current_price,
+                    'threshold': lower_threshold,
+                    'threshold_type': 'lower',
+                    'message': f"{symbol} dropped to ${current_price:.2f} (threshold: ${lower_threshold:.2f})"
+                })
+                logger.info(f"Lower threshold violation: {symbol} at ${current_price:.2f}")
+
+        return violations
+
+    def get_tracked_symbols(self) -> List[str]:
+        """Get list of all tracked stock symbols"""
+        return [stock.get('symbol') for stock in self.stocks if stock.get('symbol')]
