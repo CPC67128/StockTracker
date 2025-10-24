@@ -130,7 +130,7 @@ class StockTracker:
             if initial_value and upper_threshold and upper_threshold > 0:
                 if upper_threshold > initial_value:  # Only calculate if upper threshold is above initial value
                     percentage = ((price - initial_value) / (upper_threshold - initial_value)) * 100
-                    percentage_text = f" - {percentage:.1f}% to target"
+                    percentage_text = f" / {percentage:.1f}% to target"
 
             # Determine color based on threshold status
             # Blue if within thresholds, Red if violated

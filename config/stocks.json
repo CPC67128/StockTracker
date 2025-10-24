@@ -1,66 +1,83 @@
 {
-  "comment": "Example configuration for French PEA (Plan d'Épargne en Actions). Set threshold to -1 to disable that check. initial_value is the purchase price.",
+  "comment": "Example configuration for French PEA (Plan d'Épargne en Actions). Set threshold to -1 to disable that check. initial_value is the purchase price, initial_quantity is the number of shares purchased.",
   "stocks": [
-    {
-      "symbol": "FR0000125007",
-      "name": "Saint-Gobain",
-      "initial_value": 80.0,
-      "upper_threshold": 120,
-      "lower_threshold": -1
-    },
     {
       "symbol": "FR0013341781",
       "name": "2CRSI",
-      "initial_value": 12.0,
+      "initial_value": 13.928,
+      "initial_quantity": 0,
       "upper_threshold": 16,
       "lower_threshold": -1
     },
     {
       "symbol": "NL0015000X07",
       "name": "BANIJAY GROUP",
-      "initial_value": 8.0,
+      "initial_value": 9.246,
+      "initial_quantity": 0,
       "upper_threshold": 12,
       "lower_threshold": -1
     },
     {
       "symbol": "FR0000130452",
       "name": "EIFFAGE",
-      "initial_value": 100.0,
+      "initial_value": 110.483,
+      "initial_quantity": 0,
       "upper_threshold": 135,
       "lower_threshold": -1
     },
     {
       "symbol": "FR0014004974",
       "name": "ENOGIA",
-      "initial_value": 4.0,
+      "initial_value": 4.723,
+      "initial_quantity": 0,
       "upper_threshold": 5.5,
+      "lower_threshold": -1
+    },
+    {
+      "symbol": "FR001400Q9V2",
+      "name": "EXOSENS",
+      "initial_value": 50.650,
+      "initial_quantity": 0,
+      "upper_threshold": 55,
+      "lower_threshold": -1
+    },
+    {
+      "symbol": "FR0000121329",
+      "name": "THALES",
+      "initial_value": 260.210,
+      "initial_quantity": 0,
+      "upper_threshold": 315,
       "lower_threshold": -1
     },
     {
       "symbol": "FR0000054900",
       "name": "TF1",
-      "initial_value": 7.0,
+      "initial_value": 8.586,
+      "initial_quantity": 0,
       "upper_threshold": 10,
       "lower_threshold": -1
     },
     {
       "symbol": "FR0010282822",
       "name": "VUSIONGROUP",
-      "initial_value": 200.0,
+      "initial_value": 245.380,
+      "initial_quantity": 0,
       "upper_threshold": 300,
       "lower_threshold": -1
     },
     {
       "symbol": "FR0000121204",
       "name": "WENDEL",
-      "initial_value": 75.0,
+      "initial_value": 82.940,
+      "initial_quantity": 0,
       "upper_threshold": 105,
       "lower_threshold": -1
     },
     {
       "symbol": "DE0007030009",
       "name": "Rheinmetall",
-      "initial_value": 1500.0,
+      "initial_value": 1839.150,
+      "initial_quantity": 0,
       "upper_threshold": 2200,
       "lower_threshold": -1
     },
@@ -68,7 +85,8 @@
       "symbol": "FR0011040500",
       "name": "74Software",
       "sector": "TEST",
-      "initial_value": 30.0,
+      "initial_value": 30,
+      "initial_quantity": 0,
       "upper_threshold": 45,
       "lower_threshold": -1
     }
