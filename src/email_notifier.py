@@ -211,6 +211,7 @@ class EmailNotifier:
             price = stock.get('price')
             upper = stock.get('upper_threshold')
             lower = stock.get('lower_threshold')
+            initial = stock.get('initial_value')
 
             # Build display name
             display_name = f"{name} ({symbol})" if name else symbol
@@ -218,6 +219,14 @@ class EmailNotifier:
             # Format thresholds
             upper_text = f"{upper:.4f}€" if (upper and upper > 0) else "Not set"
             lower_text = f"{lower:.4f}€" if (lower and lower > 0) else "Not set"
+
+            # Calculate percentage to upper threshold
+            # Formula: (current - initial) / (upper - initial) * 100
+            percentage_text = ""
+            if price is not None and initial and upper and upper > 0:
+                if upper > initial:  # Only calculate if upper threshold is above initial value
+                    percentage = ((price - initial) / (upper - initial)) * 100
+                    percentage_text = f" - {percentage:.1f}% to target"
 
             # Determine status and color
             is_alert = False
@@ -233,7 +242,7 @@ class EmailNotifier:
                 status_text = "[ALERT]" if is_alert else "[OK]"
                 css_class = "stock-alert" if is_alert else "stock-ok"
 
-                html += f'<div class="{css_class}">{display_name}: {price_text} {status_text} (Upper: {upper_text}, Lower: {lower_text})</div>\n'
+                html += f'<div class="{css_class}">{display_name}: {price_text} {status_text} (Upper: {upper_text}, Lower: {lower_text}){percentage_text}</div>\n'
             else:
                 html += f'<div class="stock-ok">{display_name}: N/A (Upper: {upper_text}, Lower: {lower_text})</div>\n'
 
