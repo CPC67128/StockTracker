@@ -111,6 +111,76 @@ Stop the application:
 docker-compose down
 ```
 
+### 5. Updating Configuration While Running
+
+**The Docker container uses your local files directly!** You can edit configuration files on your local system and the running container will use the updated files.
+
+#### How It Works
+
+The `docker-compose.yml` file uses **volume mounts** to link your local files to the container:
+
+```yaml
+volumes:
+  - ./config:/app/config:ro   # Config files (read-only)
+  - ./data:/app/data           # Logs and data (read-write)
+```
+
+This means:
+- **Config directory**: Your local `config/stocks.json` is mounted into the container
+- **Data directory**: Logs are written to your local `data/stocktracker.log`
+- **No rebuild needed**: Changes to stocks.json don't require rebuilding the Docker image
+
+#### Updating Stocks Without Stopping the Container
+
+**Option 1: Wait for next check cycle** (automatic)
+```bash
+# 1. Edit your local stocks.json file
+notepad config\stocks.json          # Windows
+nano config/stocks.json             # Linux/Mac
+
+# 2. The container will automatically use the new configuration
+#    on the next check cycle (default: every 15 minutes)
+```
+
+**Option 2: Restart immediately** (faster)
+```bash
+# 1. Edit your local stocks.json file
+notepad config\stocks.json
+
+# 2. Restart the container to apply changes immediately
+docker-compose restart
+
+# 3. View logs to confirm new configuration
+docker-compose logs -f
+```
+
+#### Viewing Logs
+
+Since logs are written to your local `data/` directory, you can view them even while the container runs:
+
+**Windows:**
+```bash
+type data\stocktracker.log
+```
+
+**Linux/Mac:**
+```bash
+tail -f data/stocktracker.log
+```
+
+**Or use Docker logs:**
+```bash
+docker-compose logs -f
+```
+
+#### Important Notes
+
+- ✅ **No image rebuild needed** when updating stocks.json
+- ✅ **Changes persist** even if you delete and recreate the container
+- ✅ **Logs are always accessible** on your local filesystem
+- ⚠️ **Config is read-only** - the container cannot modify your stocks.json (by design)
+- ⚠️ **Changes to code** (src/*.py files) require rebuilding: `docker-compose up -d --build`
+
 ## Local Development (Without Docker)
 
 ### 1. Install Dependencies
