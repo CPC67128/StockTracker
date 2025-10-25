@@ -129,15 +129,6 @@ class StockTracker:
             price = prices[symbol]
             display_name = f"{name} ({symbol})" if name else symbol
 
-            # Map currency code to symbol
-            currency_symbol = {
-                'EUR': '€',
-                'USD': '$',
-                'GBP': '£',
-                'JPY': '¥',
-                'CHF': 'CHF'
-            }.get(currency, currency)
-
             # Calculate percentage to upper threshold
             # Formula: (current - initial) / (upper - initial) * 100
             percentage_text = ""
@@ -177,9 +168,9 @@ class StockTracker:
 
             # Print with color
             if is_within_thresholds:
-                print(f"{Fore.BLUE}{display_name}: {price:.4f}{currency_symbol} [OK]{percentage_text}{holding_text}{Style.RESET_ALL}")
+                print(f"{Fore.BLUE}{display_name}: {price:.4f} {currency} [OK]{percentage_text}{holding_text}{Style.RESET_ALL}")
             else:
-                print(f"{Fore.RED}{display_name}: {price:.4f}{currency_symbol} [ALERT] (threshold crossed!){percentage_text}{holding_text}{Style.RESET_ALL}")
+                print(f"{Fore.RED}{display_name}: {price:.4f} {currency} [ALERT] (threshold crossed!){percentage_text}{holding_text}{Style.RESET_ALL}")
 
         print()
 

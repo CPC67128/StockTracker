@@ -84,9 +84,9 @@ class EmailNotifier:
             else:
                 body += f"Symbol: {violation['symbol']}\n"
 
-            currency_symbol = violation.get('currency_symbol', '€')
-            body += f"Current Price: {violation['current_price']:.4f}{currency_symbol}\n"
-            body += f"Threshold ({violation['threshold_type']}): {violation['threshold']:.4f}{currency_symbol}\n"
+            currency = violation.get('currency', 'EUR')
+            body += f"Current Price: {violation['current_price']:.4f} {currency}\n"
+            body += f"Threshold ({violation['threshold_type']}): {violation['threshold']:.4f} {currency}\n"
             body += f"Status: {violation['message']}\n"
             body += "-" * 50 + "\n\n"
 
@@ -220,18 +220,9 @@ class EmailNotifier:
             # Build display name
             display_name = f"{name} ({symbol})" if name else symbol
 
-            # Map currency code to symbol
-            currency_symbol = {
-                'EUR': '€',
-                'USD': '$',
-                'GBP': '£',
-                'JPY': '¥',
-                'CHF': 'CHF'
-            }.get(currency, currency)
-
             # Format thresholds
-            upper_text = f"{upper:.4f}{currency_symbol}" if (upper and upper > 0) else "Not set"
-            lower_text = f"{lower:.4f}{currency_symbol}" if (lower and lower > 0) else "Not set"
+            upper_text = f"{upper:.4f} {currency}" if (upper and upper > 0) else "Not set"
+            lower_text = f"{lower:.4f} {currency}" if (lower and lower > 0) else "Not set"
 
             # Calculate percentage to upper threshold
             # Formula: (current - initial) / (upper - initial) * 100
@@ -270,7 +261,7 @@ class EmailNotifier:
 
             # Build line
             if price is not None:
-                price_text = f"{price:.4f}{currency_symbol}"
+                price_text = f"{price:.4f} {currency}"
                 status_text = "[ALERT]" if is_alert else "[OK]"
                 css_class = "stock-alert" if is_alert else "stock-ok"
 
