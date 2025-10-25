@@ -84,8 +84,9 @@ class EmailNotifier:
             else:
                 body += f"Symbol: {violation['symbol']}\n"
 
-            body += f"Current Price: {violation['current_price']:.4f}€\n"
-            body += f"Threshold ({violation['threshold_type']}): {violation['threshold']:.4f}€\n"
+            currency_symbol = violation.get('currency_symbol', '€')
+            body += f"Current Price: {violation['current_price']:.4f}{currency_symbol}\n"
+            body += f"Threshold ({violation['threshold_type']}): {violation['threshold']:.4f}{currency_symbol}\n"
             body += f"Status: {violation['message']}\n"
             body += "-" * 50 + "\n\n"
 
@@ -210,6 +211,7 @@ class EmailNotifier:
             name = stock.get('name', '')
             symbol = stock.get('symbol')
             price = stock.get('price')
+            currency = stock.get('currency', 'EUR')
             upper = stock.get('upper_threshold')
             lower = stock.get('lower_threshold')
             initial = stock.get('initial_value')
@@ -218,9 +220,18 @@ class EmailNotifier:
             # Build display name
             display_name = f"{name} ({symbol})" if name else symbol
 
+            # Map currency code to symbol
+            currency_symbol = {
+                'EUR': '€',
+                'USD': '$',
+                'GBP': '£',
+                'JPY': '¥',
+                'CHF': 'CHF'
+            }.get(currency, currency)
+
             # Format thresholds
-            upper_text = f"{upper:.4f}€" if (upper and upper > 0) else "Not set"
-            lower_text = f"{lower:.4f}€" if (lower and lower > 0) else "Not set"
+            upper_text = f"{upper:.4f}{currency_symbol}" if (upper and upper > 0) else "Not set"
+            lower_text = f"{lower:.4f}{currency_symbol}" if (lower and lower > 0) else "Not set"
 
             # Calculate percentage to upper threshold
             # Formula: (current - initial) / (upper - initial) * 100
@@ -259,7 +270,7 @@ class EmailNotifier:
 
             # Build line
             if price is not None:
-                price_text = f"{price:.4f}€"
+                price_text = f"{price:.4f}{currency_symbol}"
                 status_text = "[ALERT]" if is_alert else "[OK]"
                 css_class = "stock-alert" if is_alert else "stock-ok"
 

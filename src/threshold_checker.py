@@ -50,11 +50,21 @@ class ThresholdChecker:
         for stock_config in self.stocks:
             symbol = stock_config.get('symbol')
             name = stock_config.get('name', '')
+            currency = stock_config.get('currency', 'EUR')
             upper_threshold = stock_config.get('upper_threshold')
             lower_threshold = stock_config.get('lower_threshold')
 
             # Create display name (show name if available, otherwise just symbol)
             display_name = f"{name} ({symbol})" if name else symbol
+
+            # Map currency code to symbol
+            currency_symbol = {
+                'EUR': '€',
+                'USD': '$',
+                'GBP': '£',
+                'JPY': '¥',
+                'CHF': 'CHF'
+            }.get(currency, currency)
 
             if symbol not in prices or prices[symbol] is None:
                 logger.warning(f"No price data for {display_name}")
@@ -70,11 +80,13 @@ class ThresholdChecker:
                     'name': name,
                     'display_name': display_name,
                     'current_price': current_price,
+                    'currency': currency,
+                    'currency_symbol': currency_symbol,
                     'threshold': upper_threshold,
                     'threshold_type': 'upper',
-                    'message': f"{display_name} reached ${current_price:.4f} (threshold: ${upper_threshold:.4f})"
+                    'message': f"{display_name} reached {current_price:.4f}{currency_symbol} (threshold: {upper_threshold:.4f}{currency_symbol})"
                 })
-                logger.info(f"Upper threshold violation: {display_name} at ${current_price:.4f}")
+                logger.info(f"Upper threshold violation: {display_name} at {current_price:.4f}{currency_symbol}")
 
             # Check lower threshold
             # Skip if threshold is None, 0, or -1 (disabled)
@@ -84,11 +96,13 @@ class ThresholdChecker:
                     'name': name,
                     'display_name': display_name,
                     'current_price': current_price,
+                    'currency': currency,
+                    'currency_symbol': currency_symbol,
                     'threshold': lower_threshold,
                     'threshold_type': 'lower',
-                    'message': f"{display_name} dropped to ${current_price:.4f} (threshold: ${lower_threshold:.4f})"
+                    'message': f"{display_name} dropped to {current_price:.4f}{currency_symbol} (threshold: {lower_threshold:.4f}{currency_symbol})"
                 })
-                logger.info(f"Lower threshold violation: {display_name} at ${current_price:.4f}")
+                logger.info(f"Lower threshold violation: {display_name} at {current_price:.4f}{currency_symbol}")
 
         return violations
 

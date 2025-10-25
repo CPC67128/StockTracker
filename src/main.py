@@ -98,6 +98,7 @@ class StockTracker:
                 'symbol': symbol,
                 'name': stock_config.get('name', ''),
                 'price': prices.get(symbol),
+                'currency': stock_config.get('currency', 'EUR'),
                 'initial_value': stock_config.get('initial_value'),
                 'initial_date': stock_config.get('initial_date'),
                 'upper_threshold': stock_config.get('upper_threshold'),
@@ -116,6 +117,7 @@ class StockTracker:
         for stock_config in self.checker.stocks:
             symbol = stock_config.get('symbol')
             name = stock_config.get('name', '')
+            currency = stock_config.get('currency', 'EUR')
             upper_threshold = stock_config.get('upper_threshold')
             lower_threshold = stock_config.get('lower_threshold')
             initial_value = stock_config.get('initial_value')
@@ -126,6 +128,15 @@ class StockTracker:
 
             price = prices[symbol]
             display_name = f"{name} ({symbol})" if name else symbol
+
+            # Map currency code to symbol
+            currency_symbol = {
+                'EUR': '€',
+                'USD': '$',
+                'GBP': '£',
+                'JPY': '¥',
+                'CHF': 'CHF'
+            }.get(currency, currency)
 
             # Calculate percentage to upper threshold
             # Formula: (current - initial) / (upper - initial) * 100
@@ -166,9 +177,9 @@ class StockTracker:
 
             # Print with color
             if is_within_thresholds:
-                print(f"{Fore.BLUE}{display_name}: {price:.4f}€ [OK]{percentage_text}{holding_text}{Style.RESET_ALL}")
+                print(f"{Fore.BLUE}{display_name}: {price:.4f}{currency_symbol} [OK]{percentage_text}{holding_text}{Style.RESET_ALL}")
             else:
-                print(f"{Fore.RED}{display_name}: {price:.4f}€ [ALERT] (threshold crossed!){percentage_text}{holding_text}{Style.RESET_ALL}")
+                print(f"{Fore.RED}{display_name}: {price:.4f}{currency_symbol} [ALERT] (threshold crossed!){percentage_text}{holding_text}{Style.RESET_ALL}")
 
         print()
 

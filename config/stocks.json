@@ -1,9 +1,10 @@
 {
-  "comment": "Example configuration for French PEA (Plan d'Épargne en Actions). Set threshold to -1 to disable that check. initial_value is the purchase price, initial_quantity is the number of shares purchased, initial_date is the purchase date (YYYY-MM-DD).",
+  "comment": "Example configuration for French PEA (Plan d'Épargne en Actions). Set threshold to -1 to disable that check. initial_value is the purchase price, initial_quantity is the number of shares purchased, initial_date is the purchase date (YYYY-MM-DD), currency is the stock's trading currency (EUR, USD, GBP, etc.).",
   "stocks": [
     {
       "symbol": "FR0013341781",
       "name": "2CRSI",
+      "currency": "EUR",
       "initial_value": 13.928,
       "initial_quantity": 0,
       "initial_date": "2024-01-01",
@@ -13,6 +14,7 @@
     {
       "symbol": "NL0015000X07",
       "name": "BANIJAY GROUP",
+      "currency": "EUR",
       "initial_value": 9.246,
       "initial_quantity": 0,
       "initial_date": "2024-01-01",
@@ -22,6 +24,7 @@
     {
       "symbol": "FR0000130452",
       "name": "EIFFAGE",
+      "currency": "EUR",
       "initial_value": 110.483,
       "initial_quantity": 0,
       "initial_date": "2024-01-01",
@@ -31,6 +34,7 @@
     {
       "symbol": "FR0014004974",
       "name": "ENOGIA",
+      "currency": "EUR",
       "initial_value": 4.723,
       "initial_quantity": 0,
       "initial_date": "2024-01-01",
@@ -40,6 +44,7 @@
     {
       "symbol": "FR001400Q9V2",
       "name": "EXOSENS",
+      "currency": "EUR",
       "initial_value": 50.650,
       "initial_quantity": 0,
       "initial_date": "2024-01-01",
@@ -49,6 +54,7 @@
     {
       "symbol": "FR0000121329",
       "name": "THALES",
+      "currency": "EUR",
       "initial_value": 260.210,
       "initial_quantity": 0,
       "initial_date": "2024-01-01",
@@ -58,6 +64,7 @@
     {
       "symbol": "FR0000054900",
       "name": "TF1",
+      "currency": "EUR",
       "initial_value": 8.586,
       "initial_quantity": 0,
       "initial_date": "2024-01-01",
@@ -67,6 +74,7 @@
     {
       "symbol": "FR0010282822",
       "name": "VUSIONGROUP",
+      "currency": "EUR",
       "initial_value": 245.380,
       "initial_quantity": 0,
       "initial_date": "2024-01-01",
@@ -76,6 +84,7 @@
     {
       "symbol": "FR0000121204",
       "name": "WENDEL",
+      "currency": "EUR",
       "initial_value": 82.940,
       "initial_quantity": 0,
       "initial_date": "2024-01-01",
@@ -85,6 +94,7 @@
     {
       "symbol": "DE0007030009",
       "name": "Rheinmetall",
+      "currency": "EUR",
       "initial_value": 1839.150,
       "initial_quantity": 0,
       "initial_date": "2024-01-01",
@@ -95,10 +105,22 @@
       "symbol": "FR0011040500",
       "name": "74Software",
       "sector": "TEST",
+      "currency": "EUR",
       "initial_value": 30,
       "initial_quantity": 0,
       "initial_date": "2024-01-01",
       "upper_threshold": 45,
+      "lower_threshold": -1
+    },
+    {
+      "symbol": "GB00BMHVL512",
+      "name": "Klarna",
+      "sector": "TEST",
+      "currency": "USD",
+      "initial_value": 36,
+      "initial_quantity": 0,
+      "initial_date": "2024-01-01",
+      "upper_threshold": 55,
       "lower_threshold": -1
     }
   ]
