@@ -197,8 +197,9 @@ class EmailNotifier:
             <style>
                 body { font-family: 'Courier New', monospace; font-size: 14px; }
                 .header { font-weight: bold; font-size: 16px; margin-bottom: 20px; }
-                .stock-ok { color: #0066cc; margin: 5px 0; }
-                .stock-alert { color: #cc0000; margin: 5px 0; }
+                .stock-target { color: #00cc00; margin: 5px 0; }
+                .stock-progress { color: #0066cc; margin: 5px 0; }
+                .stock-loss { color: #cc0000; margin: 5px 0; }
                 .footer { margin-top: 20px; font-size: 12px; color: #666; }
             </style>
         </head>
@@ -227,6 +228,7 @@ class EmailNotifier:
             # Calculate percentage to upper threshold
             # Formula: (current - initial) / (upper - initial) * 100
             percentage_text = ""
+            percentage = None
             if price is not None and initial and upper and upper > 0:
                 if upper > initial:  # Only calculate if upper threshold is above initial value
                     percentage = ((price - initial) / (upper - initial)) * 100
@@ -251,23 +253,34 @@ class EmailNotifier:
                     # Invalid date format, skip
                     pass
 
-            # Determine status and color
-            is_alert = False
+            # Determine status and color based on threshold and percentage
             if price is not None:
-                if upper and upper > 0 and price >= upper:
-                    is_alert = True
-                elif lower and lower > 0 and price <= lower:
-                    is_alert = True
+                # Check if upper threshold is crossed (good news!)
+                upper_threshold_crossed = upper and upper > 0 and price >= upper
+                # Check if lower threshold is crossed (bad news)
+                lower_threshold_crossed = lower and lower > 0 and price <= lower
 
-            # Build line
-            if price is not None:
+                if upper_threshold_crossed:
+                    # Green for upper threshold reached (target achieved!)
+                    css_class = "stock-target"
+                    status_text = "[TARGET REACHED]"
+                elif lower_threshold_crossed:
+                    # Red for lower threshold crossed (alert)
+                    css_class = "stock-loss"
+                    status_text = "[ALERT] (lower threshold crossed!)"
+                elif percentage is not None and percentage < 0:
+                    # Red for negative percentage (below initial value)
+                    css_class = "stock-loss"
+                    status_text = "[OK]"
+                else:
+                    # Blue for positive percentage (approaching target)
+                    css_class = "stock-progress"
+                    status_text = "[OK]"
+
                 price_text = f"{price:.4f} {currency}"
-                status_text = "[ALERT]" if is_alert else "[OK]"
-                css_class = "stock-alert" if is_alert else "stock-ok"
-
                 html += f'<div class="{css_class}">{display_name}: {price_text} {status_text} (Upper: {upper_text}, Lower: {lower_text}){percentage_text}{holding_text}</div>\n'
             else:
-                html += f'<div class="stock-ok">{display_name}: N/A (Upper: {upper_text}, Lower: {lower_text}){holding_text}</div>\n'
+                html += f'<div class="stock-progress">{display_name}: N/A (Upper: {upper_text}, Lower: {lower_text}){holding_text}</div>\n'
 
         html += """
             <div class="footer">This is an automated daily summary from StockTracker.</div>
