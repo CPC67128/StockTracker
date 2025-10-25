@@ -133,6 +133,7 @@ class StockTracker:
             # Calculate percentage to upper threshold
             # Formula: (current - initial) / (upper - initial) * 100
             percentage_text = ""
+            percentage = None
             if initial_value and upper_threshold and upper_threshold > 0:
                 if upper_threshold > initial_value:  # Only calculate if upper threshold is above initial value
                     percentage = ((price - initial_value) / (upper_threshold - initial_value)) * 100
@@ -157,25 +158,27 @@ class StockTracker:
                     # Invalid date format, skip
                     pass
 
-            # Determine color based on threshold status
-            # Blue if within thresholds, Red if violated
-            is_within_thresholds = True
-
+            # Determine color based on threshold status and percentage
             # Check if price violates thresholds
+            is_alert = False
             if upper_threshold and upper_threshold > 0 and price >= upper_threshold:
-                is_within_thresholds = False
+                is_alert = True
             if lower_threshold and lower_threshold > 0 and price <= lower_threshold:
-                is_within_thresholds = False
+                is_alert = True
 
             # Print with color to console
-            if is_within_thresholds:
-                print(f"{Fore.BLUE}{display_name}: {price:.4f} {currency} [OK]{percentage_text}{holding_text}{Style.RESET_ALL}")
-                # Also log to file (without colors)
+            if is_alert:
+                # Red for alerts (threshold crossed)
+                print(f"{Fore.RED}{display_name}: {price:.4f} {currency} [ALERT] (threshold crossed!){percentage_text}{holding_text}{Style.RESET_ALL}")
+                logger.warning(f"{display_name}: {price:.4f} {currency} [ALERT] (threshold crossed!){percentage_text}{holding_text}")
+            elif percentage is not None and percentage < 0:
+                # Red for negative percentage (below initial value)
+                print(f"{Fore.RED}{display_name}: {price:.4f} {currency} [OK]{percentage_text}{holding_text}{Style.RESET_ALL}")
                 logger.info(f"{display_name}: {price:.4f} {currency} [OK]{percentage_text}{holding_text}")
             else:
-                print(f"{Fore.RED}{display_name}: {price:.4f} {currency} [ALERT] (threshold crossed!){percentage_text}{holding_text}{Style.RESET_ALL}")
-                # Also log to file (without colors)
-                logger.warning(f"{display_name}: {price:.4f} {currency} [ALERT] (threshold crossed!){percentage_text}{holding_text}")
+                # Green for positive percentage (approaching target)
+                print(f"{Fore.GREEN}{display_name}: {price:.4f} {currency} [OK]{percentage_text}{holding_text}{Style.RESET_ALL}")
+                logger.info(f"{display_name}: {price:.4f} {currency} [OK]{percentage_text}{holding_text}")
 
         print()
 
