@@ -389,6 +389,36 @@ When running successfully, you'll see output like:
 - Ensure Python is added to your PATH
 - Use forward slashes or escaped backslashes in file paths
 
+**Docker Compose "ModuleNotFoundError: No module named 'distutils'" error:**
+
+This happens on servers with Python 3.12+ when using old docker-compose (v1.x). The old docker-compose is written in Python and requires distutils which was removed in Python 3.12.
+
+**Solution:**
+```bash
+# Install python3-setuptools (provides distutils compatibility)
+sudo apt-get update
+sudo apt-get install python3-setuptools
+
+# Verify docker-compose works now
+docker-compose --version
+```
+
+**Alternative (Recommended for long-term):**
+Upgrade to Docker Compose V2 which doesn't use Python:
+```bash
+# Remove old docker-compose
+sudo apt-get remove docker-compose
+
+# Download Docker Compose V2
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# Make it executable
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Verify
+docker-compose --version
+```
+
 ## Advanced Usage
 
 ### Running as a Background Service
