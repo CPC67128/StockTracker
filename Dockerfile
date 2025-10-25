@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy requirements file
 COPY requirements.txt .
 
+# Install setuptools first (for Python 3.12+ compatibility)
+RUN pip install --no-cache-dir setuptools
+
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
