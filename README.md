@@ -423,30 +423,120 @@ docker-compose --version
 
 ### Running as a Background Service
 
-**Linux/Mac (using systemd):**
+**Linux (using systemd):**
 
-Create a systemd service file at `/etc/systemd/system/stocktracker.service`:
+If you're running without Docker (e.g., on a VPS with Docker restrictions), you can set up StockTracker as a systemd service to run continuously in the background.
+
+**Step 1: Get your paths**
+```bash
+# Get your username
+whoami
+
+# Get the full path to StockTracker
+cd /path/to/StockTracker
+pwd
+
+# Get the full path to Python in venv
+realpath venv/bin/python
+```
+
+**Step 2: Create systemd service file**
+```bash
+sudo nano /etc/systemd/system/stocktracker.service
+```
+
+**Step 3: Add this configuration** (replace the placeholders):
 
 ```ini
 [Unit]
-Description=StockTracker Service
+Description=StockTracker - Stock Price Monitor with Email Alerts
 After=network.target
 
 [Service]
 Type=simple
-User=yourusername
-WorkingDirectory=/path/to/StockTracker
-ExecStart=/path/to/StockTracker/venv/bin/python src/main.py
-Restart=on-failure
+User=YOUR_USERNAME
+WorkingDirectory=/full/path/to/StockTracker
+ExecStart=/full/path/to/StockTracker/venv/bin/python src/main.py
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=append:/full/path/to/StockTracker/data/stocktracker.log
+StandardError=append:/full/path/to/StockTracker/data/stocktracker.log
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Then enable and start:
+**Example** (if username is "john" and path is "/home/john/StockTracker"):
+```ini
+[Unit]
+Description=StockTracker - Stock Price Monitor with Email Alerts
+After=network.target
+
+[Service]
+Type=simple
+User=john
+WorkingDirectory=/home/john/StockTracker
+ExecStart=/home/john/StockTracker/venv/bin/python src/main.py
+Restart=always
+RestartSec=10
+
+StandardOutput=append:/home/john/StockTracker/data/stocktracker.log
+StandardError=append:/home/john/StockTracker/data/stocktracker.log
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**Step 4: Enable and start the service**
 ```bash
+# Reload systemd
+sudo systemctl daemon-reload
+
+# Enable to start on boot
 sudo systemctl enable stocktracker
+
+# Start the service
 sudo systemctl start stocktracker
+
+# Check status
+sudo systemctl status stocktracker
+```
+
+**Managing the service:**
+```bash
+# View real-time logs
+sudo journalctl -u stocktracker -f
+
+# Or view log file directly
+tail -f data/stocktracker.log
+
+# Stop the service
+sudo systemctl stop stocktracker
+
+# Restart the service
+sudo systemctl restart stocktracker
+
+# Disable from starting on boot
+sudo systemctl disable stocktracker
+```
+
+**Alternative: Using screen (simpler but less robust)**
+```bash
+# Install screen
+sudo apt-get install screen
+
+# Start a screen session
+screen -S stocktracker
+
+# Run StockTracker
+cd /path/to/StockTracker
+source venv/bin/activate
+python src/main.py
+
+# Detach: Press Ctrl+A, then D
+# Reattach later: screen -r stocktracker
 ```
 
 **Windows (using Task Scheduler):**
