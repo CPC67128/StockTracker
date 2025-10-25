@@ -113,6 +113,7 @@ class StockTracker:
     def _display_price_summary(self, prices, symbol_to_name):
         """Display colored summary of stock prices vs thresholds"""
         print(f"\n{Style.BRIGHT}=== Stock Price Summary ==={Style.RESET_ALL}")
+        logger.info("=== Stock Price Summary ===")
 
         for stock_config in self.checker.stocks:
             symbol = stock_config.get('symbol')
@@ -166,11 +167,15 @@ class StockTracker:
             if lower_threshold and lower_threshold > 0 and price <= lower_threshold:
                 is_within_thresholds = False
 
-            # Print with color
+            # Print with color to console
             if is_within_thresholds:
                 print(f"{Fore.BLUE}{display_name}: {price:.4f} {currency} [OK]{percentage_text}{holding_text}{Style.RESET_ALL}")
+                # Also log to file (without colors)
+                logger.info(f"{display_name}: {price:.4f} {currency} [OK]{percentage_text}{holding_text}")
             else:
                 print(f"{Fore.RED}{display_name}: {price:.4f} {currency} [ALERT] (threshold crossed!){percentage_text}{holding_text}{Style.RESET_ALL}")
+                # Also log to file (without colors)
+                logger.warning(f"{display_name}: {price:.4f} {currency} [ALERT] (threshold crossed!){percentage_text}{holding_text}")
 
         print()
 
