@@ -460,10 +460,6 @@ ExecStart=/full/path/to/StockTracker/venv/bin/python src/main.py
 Restart=always
 RestartSec=10
 
-# Logging
-StandardOutput=append:/full/path/to/StockTracker/data/stocktracker.log
-StandardError=append:/full/path/to/StockTracker/data/stocktracker.log
-
 [Install]
 WantedBy=multi-user.target
 ```
@@ -482,12 +478,11 @@ ExecStart=/home/john/StockTracker/venv/bin/python src/main.py
 Restart=always
 RestartSec=10
 
-StandardOutput=append:/home/john/StockTracker/data/stocktracker.log
-StandardError=append:/home/john/StockTracker/data/stocktracker.log
-
 [Install]
 WantedBy=multi-user.target
 ```
+
+**Note:** Logging is handled by the Python application itself, which writes to `data/stocktracker.log`. No need to configure logging in the systemd service file (this avoids duplicate log entries).
 
 **Step 4: Enable and start the service**
 ```bash
