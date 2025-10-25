@@ -239,7 +239,7 @@ class EmailNotifier:
             if price is not None and initial and upper and upper > 0:
                 if upper > initial:  # Only calculate if upper threshold is above initial value
                     percentage = ((price - initial) / (upper - initial)) * 100
-                    percentage_text = f" - {percentage:.1f}% to target"
+                    percentage_text = f" / {percentage:.1f}% to target"
 
             # Calculate holding period (retention duration)
             holding_text = ""
