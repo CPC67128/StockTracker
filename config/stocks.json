@@ -132,6 +132,17 @@
       "initial_date": "2025-10-27",
       "upper_threshold": 55,
       "lower_threshold": -1
+    },
+    {
+      "symbol": "NL0006294274",
+      "name": "Euronext",
+      "sector": "PEA",
+      "currency": "EUR",
+      "initial_value": 125,
+      "initial_quantity": 0,
+      "initial_date": "2025-10-27",
+      "upper_threshold": 160,
+      "lower_threshold": -1
     }
   ]
 }
