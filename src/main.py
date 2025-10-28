@@ -40,6 +40,7 @@ class StockTracker:
         self.notifier = EmailNotifier()
         self.scheduler = BlockingScheduler()
         self.last_prices = {}  # Cache last fetched prices
+        self.last_daily_email_date = None  # Track when daily email was last sent
 
     def check_stocks(self):
         """Main checking routine - fetches prices and checks thresholds"""
@@ -77,7 +78,31 @@ class StockTracker:
         else:
             logger.info("No threshold violations detected")
 
+        # Check if we should send daily email (once per day, between 9 AM - 5 PM)
+        self._check_and_send_daily_email()
+
         logger.info("Stock check cycle completed")
+
+    def _check_and_send_daily_email(self):
+        """Check if we should send daily email (once per day, between 9 AM - 5 PM)"""
+        now = datetime.now()
+        current_hour = now.hour
+        current_date = now.date()
+
+        # Check if we're in the 9 AM - 5 PM window
+        if current_hour < 9 or current_hour >= 17:
+            logger.debug(f"Outside email window (9 AM - 5 PM), current time: {now.strftime('%H:%M')}")
+            return
+
+        # Check if we already sent email today
+        if self.last_daily_email_date == current_date:
+            logger.debug(f"Daily email already sent today ({current_date})")
+            return
+
+        # Send the daily email
+        logger.info(f"Sending daily email (first run between 9 AM - 5 PM today)")
+        self.send_daily_summary()
+        self.last_daily_email_date = current_date
 
     def send_daily_summary(self):
         """Send daily summary email with all stock prices and thresholds"""
@@ -191,13 +216,10 @@ class StockTracker:
 
         logger.info(f"StockTracker starting with {check_interval} minute check interval")
 
-        # Run initial check immediately
+        # Run initial check immediately (will also send daily email if in time window)
         self.check_stocks()
 
-        # Send initial daily summary on startup
-        self.send_daily_summary()
-
-        # Schedule periodic checks
+        # Schedule periodic checks (daily email is checked within check_stocks)
         self.scheduler.add_job(
             self.check_stocks,
             'interval',
@@ -205,15 +227,8 @@ class StockTracker:
             id='stock_check'
         )
 
-        # Schedule daily summary email (every 24 hours)
-        self.scheduler.add_job(
-            self.send_daily_summary,
-            'interval',
-            hours=24,
-            id='daily_summary'
-        )
-
         logger.info("Scheduler started. Press Ctrl+C to exit.")
+        logger.info("Daily email will be sent on first check between 9 AM - 5 PM each day")
         try:
             self.scheduler.start()
         except (KeyboardInterrupt, SystemExit):
