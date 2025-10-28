@@ -143,6 +143,17 @@
       "initial_date": "2025-10-28",
       "upper_threshold": 160,
       "lower_threshold": -1
+    },
+    {
+      "symbol": "FR0014004362",
+      "name": "Entech",
+      "sector": "PEA",
+      "currency": "EUR",
+      "initial_value": 7.8,
+      "initial_quantity": 0,
+      "initial_date": "2025-10-28",
+      "upper_threshold": 11,
+      "lower_threshold": -1
     }
   ]
 }
