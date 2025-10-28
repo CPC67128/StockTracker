@@ -41,6 +41,7 @@ class StockTracker:
         self.scheduler = BlockingScheduler()
         self.last_prices = {}  # Cache last fetched prices
         self.last_daily_email_date = None  # Track when daily email was last sent
+        self.startup_email_sent = False  # Track if startup email was sent
 
     def check_stocks(self):
         """Main checking routine - fetches prices and checks thresholds"""
@@ -84,10 +85,18 @@ class StockTracker:
         logger.info("Stock check cycle completed")
 
     def _check_and_send_daily_email(self):
-        """Check if we should send daily email (once per day, between 9 AM - 5 PM)"""
+        """Check if we should send daily email (startup or once per day between 9 AM - 5 PM)"""
         now = datetime.now()
         current_hour = now.hour
         current_date = now.date()
+
+        # Always send on first startup
+        if not self.startup_email_sent:
+            logger.info(f"Sending daily email on startup")
+            self.send_daily_summary()
+            self.startup_email_sent = True
+            self.last_daily_email_date = current_date
+            return
 
         # Check if we're in the 9 AM - 5 PM window
         if current_hour < 9 or current_hour >= 17:
