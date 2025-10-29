@@ -154,6 +154,17 @@
       "initial_date": "2025-10-28",
       "upper_threshold": 11,
       "lower_threshold": -1
+    },
+    {
+      "symbol": "FR0004163111",
+      "name": "Genfit",
+      "sector": "PEA",
+      "currency": "EUR",
+      "initial_value": 3.6,
+      "initial_quantity": 0,
+      "initial_date": "2025-10-29",
+      "upper_threshold": 4.5,
+      "lower_threshold": -1
     }
   ]
 }
