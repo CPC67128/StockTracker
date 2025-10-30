@@ -47,6 +47,10 @@ class StockTracker:
         """Main checking routine - fetches prices and checks thresholds"""
         logger.info("Starting stock check cycle...")
 
+        # Check for configuration changes and reload if needed
+        if self.checker.reload_if_changed():
+            logger.info("Stock configuration has been reloaded with updated values")
+
         # Get tracked symbols
         symbols = self.checker.get_tracked_symbols()
         if not symbols:

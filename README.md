@@ -11,6 +11,7 @@ A Python-based stock monitoring application that tracks stock prices and sends e
 - Configurable upper and lower price thresholds per stock
 - Email notifications when thresholds are crossed
 - Scheduled periodic checks (configurable interval)
+- **Hot-reload configuration** - Edit stocks.json without restarting the application
 - Docker containerized for portable deployment
 - Simple JSON-based configuration
 - Automatic fallback between data sources
@@ -95,6 +96,8 @@ Edit `config/stocks.json` to add your stocks and thresholds:
 }
 ```
 
+**Hot-Reload Feature:** You can edit `config/stocks.json` at any time while the application is running. The changes will be automatically detected and applied on the next check cycle (no restart required). This works for both Docker and systemd deployments.
+
 ### 4. Run with Docker Compose
 
 ```bash
@@ -132,17 +135,26 @@ This means:
 
 #### Updating Stocks Without Stopping the Container
 
-**Option 1: Wait for next check cycle** (automatic)
+**Automatic Hot-Reload** (recommended)
 ```bash
 # 1. Edit your local stocks.json file
 notepad config\stocks.json          # Windows
 nano config/stocks.json             # Linux/Mac
 
-# 2. The container will automatically use the new configuration
+# 2. Save the file - changes are automatically detected and applied
 #    on the next check cycle (default: every 15 minutes)
+# 3. Check logs to see when configuration is reloaded
+docker-compose logs -f
 ```
 
-**Option 2: Restart immediately** (faster)
+You should see a log message like:
+```
+Configuration file changed, reloading stocks from config/stocks.json
+Loaded 16 stocks from configuration
+Stock configuration has been reloaded with updated values
+```
+
+**Manual Restart** (if you want immediate effect)
 ```bash
 # 1. Edit your local stocks.json file
 notepad config\stocks.json
@@ -510,12 +522,29 @@ tail -f data/stocktracker.log
 # Stop the service
 sudo systemctl stop stocktracker
 
-# Restart the service
+# Restart the service (not needed for config changes - hot-reload handles it!)
 sudo systemctl restart stocktracker
 
 # Disable from starting on boot
 sudo systemctl disable stocktracker
 ```
+
+**Updating stocks.json with hot-reload:**
+```bash
+# 1. Edit the stocks.json file
+nano config/stocks.json
+
+# 2. Save the file - changes are automatically detected on next check cycle
+# 3. Monitor logs to see the reload happen
+tail -f data/stocktracker.log
+
+# You should see:
+# Configuration file changed, reloading stocks from config/stocks.json
+# Loaded X stocks from configuration
+# Stock configuration has been reloaded with updated values
+```
+
+**No restart needed!** The service will automatically detect and apply changes to stocks.json on the next check cycle.
 
 **Alternative: Using screen (simpler but less robust)**
 ```bash

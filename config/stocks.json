@@ -165,6 +165,17 @@
       "initial_date": "2025-10-29",
       "upper_threshold": 4.5,
       "lower_threshold": -1
+    },
+    {
+      "symbol": "US5951121038",
+      "name": "Micron Technology",
+      "sector": "PEA",
+      "currency": "USD",
+      "initial_value": 224,
+      "initial_quantity": 0,
+      "initial_date": "2025-10-30",
+      "upper_threshold": 250,
+      "lower_threshold": -1
     }
   ]
 }

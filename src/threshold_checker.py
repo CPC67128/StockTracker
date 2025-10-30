@@ -15,6 +15,7 @@ class ThresholdChecker:
 
     def __init__(self, config_path: str = "config/stocks.json"):
         self.config_path = config_path
+        self.last_modified_time = None
         self.stocks = self.load_stocks()
 
     def load_stocks(self) -> List[Dict]:
@@ -24,12 +25,49 @@ class ThresholdChecker:
             return []
 
         try:
+            # Update last modified time
+            self.last_modified_time = os.path.getmtime(self.config_path)
+
             with open(self.config_path, 'r') as f:
                 data = json.load(f)
-                return data.get('stocks', [])
+                stocks = data.get('stocks', [])
+                logger.info(f"Loaded {len(stocks)} stocks from configuration")
+                return stocks
         except Exception as e:
             logger.error(f"Error loading stock config: {str(e)}")
             return []
+
+    def check_for_config_changes(self) -> bool:
+        """
+        Check if the configuration file has been modified since last load
+
+        Returns:
+            True if config file has changed, False otherwise
+        """
+        if not os.path.exists(self.config_path):
+            return False
+
+        try:
+            current_modified_time = os.path.getmtime(self.config_path)
+            if self.last_modified_time is None or current_modified_time > self.last_modified_time:
+                return True
+            return False
+        except Exception as e:
+            logger.error(f"Error checking config file modification time: {str(e)}")
+            return False
+
+    def reload_if_changed(self) -> bool:
+        """
+        Reload configuration if file has been modified
+
+        Returns:
+            True if configuration was reloaded, False otherwise
+        """
+        if self.check_for_config_changes():
+            logger.info(f"Configuration file changed, reloading stocks from {self.config_path}")
+            self.stocks = self.load_stocks()
+            return True
+        return False
 
     def check_thresholds(self, prices: Dict[str, Optional[float]]) -> List[Dict]:
         """
