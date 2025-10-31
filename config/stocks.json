@@ -16,6 +16,6 @@
     {"symbol": "NL0006294274", "name": "Euronext", "sector": "PEA", "currency": "EUR", "initial_value": 127.8, "initial_quantity": 0, "initial_date": "2025-10-28", "upper_threshold": 160, "lower_threshold": -1},
     {"symbol": "FR0014004362", "name": "Entech", "sector": "PEA", "currency": "EUR", "initial_value": 7.91, "initial_quantity": 0, "initial_date": "2025-10-28", "upper_threshold": 11, "lower_threshold": -1},
     {"symbol": "FR0004163111", "name": "Genfit", "sector": "PEA", "currency": "EUR", "initial_value": 3.644, "initial_quantity": 0, "initial_date": "2025-10-29", "upper_threshold": 4.5, "lower_threshold": -1},
-    {"symbol": "US5951121038", "name": "Micron Technology", "sector": "PEA", "currency": "USD", "initial_value": 224, "initial_quantity": 0, "initial_date": "2025-10-30", "upper_threshold": 250, "lower_threshold": -1}
+    {"symbol": "US5951121038", "name": "Micron Technology", "sector": "PEA", "currency": "USD", "initial_value": 246.674, "initial_quantity": 0, "initial_date": "2025-10-30", "upper_threshold": 250, "lower_threshold": -1}
   ]
 }
