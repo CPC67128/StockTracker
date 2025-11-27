@@ -21,6 +21,7 @@
     {"symbol": "FR0010481960", "name": "Argan", "sector": "CTO", "currency": "EUR", "initial_value": 67.1, "initial_quantity": 0, "initial_date": "2025-11-04", "upper_threshold": 80, "lower_threshold": -1},
     {"symbol": "FR0013451333", "name": "FDJ United", "sector": "PEA", "currency": "EUR", "initial_value": 24.2, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 35, "lower_threshold": -1},
     {"symbol": "FR0010040865", "name": "Gecina", "sector": "CTO", "currency": "EUR", "initial_value": 79.0, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 110, "lower_threshold": -1},
-    {"symbol": "FR0004056851", "name": "VALNEVA", "sector": "PEA", "currency": "EUR", "initial_value": 4.3, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 6.5, "lower_threshold": -1}
+    {"symbol": "FR0004056851", "name": "VALNEVA", "sector": "PEA", "currency": "EUR", "initial_value": 4.3, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 6.5, "lower_threshold": -1},
+    {"symbol": "FR0010214064", "name": "GPE GROUP PIZZORNO", "sector": "PEA", "currency": "EUR", "initial_value": 59.0, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 75, "lower_threshold": -1}
   ]
 }
