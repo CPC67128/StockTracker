@@ -24,7 +24,8 @@
     {"symbol": "FR0004056851", "name": "VALNEVA", "sector": "PEA", "currency": "EUR", "initial_value": 4.3, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 6.5, "lower_threshold": -1},
     {"symbol": "FR0010214064", "name": "GPE GROUP PIZZORNO", "sector": "PEA", "currency": "EUR", "initial_value": 59.0, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 75, "lower_threshold": -1},
     {"symbol": "FR0004045847", "name": "VOYAGEURS DU MONDE", "sector": "TEST", "currency": "EUR", "initial_value": 171.0, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 195, "lower_threshold": -1},
-    {"symbol": "IT0005466963", "name": "RACING FORCE", "sector": "PEA", "currency": "EUR", "initial_value": 4.96, "initial_quantity": 0, "initial_date": "2025-11-28", "upper_threshold": 6, "lower_threshold": -1}
+    {"symbol": "IT0005466963", "name": "RACING FORCE", "sector": "PEA", "currency": "EUR", "initial_value": 4.96, "initial_quantity": 0, "initial_date": "2025-11-28", "upper_threshold": 6, "lower_threshold": -1},
+    {"symbol": "FR001400MDW2", "name": "STIF", "sector": "PEA", "currency": "EUR", "initial_value": 56.6, "initial_quantity": 0, "initial_date": "2025-11-28", "upper_threshold": 90, "lower_threshold": -1}
     
     
   ]
