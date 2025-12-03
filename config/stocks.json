@@ -22,7 +22,9 @@
     {"symbol": "FR0004056851", "name": "VALNEVA", "sector": "PEA", "currency": "EUR", "initial_value": 4.3, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 6.5, "lower_threshold": -1},
     {"symbol": "FR0010214064", "name": "GPE GROUP PIZZORNO", "sector": "PEA", "currency": "EUR", "initial_value": 59.0, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 75, "lower_threshold": -1},
     {"symbol": "IT0005466963", "name": "RACING FORCE", "sector": "PEA", "currency": "EUR", "initial_value": 4.96, "initial_quantity": 0, "initial_date": "2025-11-28", "upper_threshold": 6, "lower_threshold": -1},
-    {"symbol": "FR001400MDW2", "name": "STIF", "sector": "PEA", "currency": "EUR", "initial_value": 56.6, "initial_quantity": 0, "initial_date": "2025-11-28", "upper_threshold": 90, "lower_threshold": -1}
+    {"symbol": "FR001400MDW2", "name": "STIF", "sector": "PEA", "currency": "EUR", "initial_value": 56.6, "initial_quantity": 0, "initial_date": "2025-11-28", "upper_threshold": 90, "lower_threshold": -1},
+    {"symbol": "FR0012435121", "name": "ELIS", "sector": "PEA", "currency": "EUR", "initial_value": 24.0, "initial_quantity": 0, "initial_date": "2025-12-03", "upper_threshold": 30, "lower_threshold": -1}
+    
   ],
   "successful_exits": [
     {"symbol": "FR0004163111", "name": "Genfit", "sector": "PEA", "currency": "EUR", "initial_value": 3.644, "initial_quantity": 0, "initial_date": "2025-10-29", "upper_threshold": 4.5, "lower_threshold": -1}
