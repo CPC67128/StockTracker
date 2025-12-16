@@ -27,7 +27,7 @@
     {"symbol": "FR0010411983", "name": "SCOR", "sector": "PEA", "currency": "EUR", "initial_value": 26.66, "initial_quantity": 0, "initial_date": "2025-12-04", "upper_threshold": 37, "lower_threshold": -1},
     {"symbol": "FR0000039109", "name": "SECHE ENVIRONNEM.", "sector": "PEA", "currency": "EUR", "initial_value": 69.5, "initial_quantity": 0, "initial_date": "2025-12-07", "upper_threshold": 90, "lower_threshold": -1},
     {"symbol": "FR0013280286", "name": "BIOMERIEUX", "sector": "PEA", "currency": "EUR", "initial_value": 104.3, "initial_quantity": 0, "initial_date": "2025-12-08", "upper_threshold": 125, "lower_threshold": -1},
-    {"symbol": "FR0000120172", "name": "CARREFOUR", "sector": "PEA", "currency": "EUR", "initial_value": 14.295, "initial_quantity": 0, "initial_date": "2025-12-15", "upper_threshold": 17, "lower_threshold": -1}
+    {"symbol": "FR0000120172", "name": "CARREFOUR", "sector": "PEA", "currency": "EUR", "initial_value": 14.26, "initial_quantity": 0, "initial_date": "2025-12-15", "upper_threshold": 17, "lower_threshold": -1}
     
   ],
   "successful_exits": [
