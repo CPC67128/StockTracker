@@ -4,7 +4,6 @@
     {"symbol": "FR0013341781", "name": "2CRSI", "sector": "PEA", "currency": "EUR", "initial_value": 13.928, "initial_quantity": 0, "initial_date": "2025-10-06", "upper_threshold": 16, "lower_threshold": -1},
     {"symbol": "NL0015000X07", "name": "BANIJAY GROUP", "sector": "PEA", "currency": "EUR", "initial_value": 9.246, "initial_quantity": 0, "initial_date": "2025-10-15", "upper_threshold": 12, "lower_threshold": -1},
     {"symbol": "FR0000130452", "name": "EIFFAGE", "sector": "PEA", "currency": "EUR", "initial_value": 110.483, "initial_quantity": 0, "initial_date": "2025-10-02", "upper_threshold": 135, "lower_threshold": -1},
-    {"symbol": "FR0014004974", "name": "ENOGIA", "sector": "PEA", "currency": "EUR", "initial_value": 4.723, "initial_quantity": 0, "initial_date": "2025-10-09", "upper_threshold": 5.5, "lower_threshold": -1},
     {"symbol": "FR001400Q9V2", "name": "EXOSENS", "sector": "PEA", "currency": "EUR", "initial_value": 50.650, "initial_quantity": 0, "initial_date": "2025-10-15", "upper_threshold": 55, "lower_threshold": -1},
     {"symbol": "FR0000121329", "name": "THALES", "sector": "PEA", "currency": "EUR", "initial_value": 260.210, "initial_quantity": 0, "initial_date": "2025-10-15", "upper_threshold": 315, "lower_threshold": -1},
     {"symbol": "FR0000054900", "name": "TF1", "sector": "PEA", "currency": "EUR", "initial_value": 8.586, "initial_quantity": 0, "initial_date": "2025-10-06", "upper_threshold": 10, "lower_threshold": -1},
@@ -14,7 +13,6 @@
     {"symbol": "GB00BMHVL512", "name": "Klarna", "sector": "CTO", "currency": "USD", "initial_value": 39.27, "initial_quantity": 0, "initial_date": "2025-10-27", "upper_threshold": 64.675, "lower_threshold": -1},
     {"symbol": "NL0006294274", "name": "Euronext", "sector": "PEA", "currency": "EUR", "initial_value": 127.8, "initial_quantity": 0, "initial_date": "2025-10-28", "upper_threshold": 160, "lower_threshold": -1},
     {"symbol": "FR0014004362", "name": "Entech", "sector": "PEA", "currency": "EUR", "initial_value": 7.91, "initial_quantity": 0, "initial_date": "2025-10-28", "upper_threshold": 11, "lower_threshold": -1},
-    {"symbol": "US5951121038", "name": "Micron Technology", "sector": "PEA", "currency": "USD", "initial_value": 246.674, "initial_quantity": 0, "initial_date": "2025-10-30", "upper_threshold": 269.35, "lower_threshold": -1},
     {"symbol": "IE00B4BNMY34", "name": "Accenture", "sector": "PEA", "currency": "USD", "initial_value": 249.967, "initial_quantity": 0, "initial_date": "2025-11-31", "upper_threshold": 310, "lower_threshold": -1},
     {"symbol": "FR0010481960", "name": "Argan", "sector": "CTO", "currency": "EUR", "initial_value": 67.1, "initial_quantity": 0, "initial_date": "2025-11-04", "upper_threshold": 80, "lower_threshold": -1},
     {"symbol": "FR0013451333", "name": "FDJ United", "sector": "PEA", "currency": "EUR", "initial_value": 24.2, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 35, "lower_threshold": -1},
@@ -34,6 +32,8 @@
     
   ],
   "successful_exits": [
-    {"symbol": "FR0004163111", "name": "Genfit", "sector": "PEA", "currency": "EUR", "initial_value": 3.644, "initial_quantity": 0, "initial_date": "2025-10-29", "upper_threshold": 4.5, "lower_threshold": -1}
+    {"symbol": "FR0004163111", "name": "Genfit", "sector": "PEA", "currency": "EUR", "initial_value": 3.644, "initial_quantity": 0, "initial_date": "2025-10-29", "upper_threshold": 4.5, "lower_threshold": -1},
+    {"symbol": "US5951121038", "name": "Micron Technology", "sector": "PEA", "currency": "USD", "initial_value": 246.674, "initial_quantity": 0, "initial_date": "2025-10-30", "upper_threshold": 269.35, "lower_threshold": -1},
+    {"symbol": "FR0014004974", "name": "ENOGIA", "sector": "PEA", "currency": "EUR", "initial_value": 4.723, "initial_quantity": 0, "initial_date": "2025-10-09", "upper_threshold": 5.5, "lower_threshold": -1}
   ]
 }
