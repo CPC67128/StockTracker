@@ -28,7 +28,8 @@
     {"symbol": "FR0000120172", "name": "CARREFOUR", "sector": "PEA", "currency": "EUR", "initial_value": 14.26, "initial_quantity": 0, "initial_date": "2025-12-15", "upper_threshold": 17, "lower_threshold": -1},
     {"symbol": "FR0010313833", "name": "ARKEMA", "sector": "PEA", "currency": "EUR", "initial_value": 52.30, "initial_quantity": 0, "initial_date": "2025-12-16", "upper_threshold": 64, "lower_threshold": -1},
     {"symbol": "FR0012757854", "name": "SPIE", "sector": "PEA", "currency": "EUR", "initial_value": 48.50, "initial_quantity": 0, "initial_date": "2025-12-19", "upper_threshold": 56, "lower_threshold": -1},
-    {"symbol": "FR0000077919", "name": "JCDECAUX", "sector": "PEA", "currency": "EUR", "initial_value": 15.35, "initial_quantity": 0, "initial_date": "2025-12-21", "upper_threshold": 20, "lower_threshold": -1}
+    {"symbol": "FR0000077919", "name": "JCDECAUX", "sector": "PEA", "currency": "EUR", "initial_value": 15.35, "initial_quantity": 0, "initial_date": "2025-12-21", "upper_threshold": 20, "lower_threshold": -1},
+    {"symbol": "FR0000031775", "name": "VICAT", "sector": "PEA", "currency": "EUR", "initial_value": 75.9, "initial_quantity": 0, "initial_date": "2026-01-03", "upper_threshold": 90, "lower_threshold": -1}
     
   ],
   "successful_exits": [
