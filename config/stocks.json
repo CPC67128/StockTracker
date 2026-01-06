@@ -30,7 +30,7 @@
     {"symbol": "FR0012757854", "name": "SPIE", "sector": "PEA", "currency": "EUR", "initial_value": 48.50, "initial_quantity": 0, "initial_date": "2025-12-19", "upper_threshold": 56, "lower_threshold": -1},
     {"symbol": "FR0000077919", "name": "JCDECAUX", "sector": "PEA", "currency": "EUR", "initial_value": 15.35, "initial_quantity": 0, "initial_date": "2025-12-21", "upper_threshold": 20, "lower_threshold": -1},
     {"symbol": "FR0000031775", "name": "VICAT", "sector": "PEA", "currency": "EUR", "initial_value": 76.1, "initial_quantity": 0, "initial_date": "2026-01-03", "upper_threshold": 90, "lower_threshold": -1},
-    {"symbol": "FR0000125007", "name": "SAINT GOBAIN", "sector": "PEA", "currency": "EUR", "initial_value": 88.0, "initial_quantity": 0, "initial_date": "2026-01-05", "upper_threshold": 110, "lower_threshold": -1}
+    {"symbol": "FR0000125007", "name": "SAINT GOBAIN", "sector": "PEA", "currency": "EUR", "initial_value": 85.22, "initial_quantity": 0, "initial_date": "2026-01-05", "upper_threshold": 110, "lower_threshold": -1}
   ],
   "successful_exits": [
     {"symbol": "FR0004163111", "name": "Genfit", "sector": "PEA", "currency": "EUR", "initial_value": 3.644, "initial_quantity": 0, "initial_date": "2025-10-29", "upper_threshold": 4.5, "lower_threshold": -1},
