@@ -4,7 +4,6 @@
     {"symbol": "FR0013341781", "name": "2CRSI", "sector": "PEA", "currency": "EUR", "initial_value": 13.928, "initial_quantity": 0, "initial_date": "2025-10-06", "upper_threshold": 16, "lower_threshold": -1},
     {"symbol": "NL0015000X07", "name": "BANIJAY GROUP", "sector": "PEA", "currency": "EUR", "initial_value": 9.246, "initial_quantity": 0, "initial_date": "2025-10-15", "upper_threshold": 12, "lower_threshold": -1},
     {"symbol": "FR0000130452", "name": "EIFFAGE", "sector": "PEA", "currency": "EUR", "initial_value": 110.483, "initial_quantity": 0, "initial_date": "2025-10-02", "upper_threshold": 135, "lower_threshold": -1},
-    {"symbol": "FR001400Q9V2", "name": "EXOSENS", "sector": "PEA", "currency": "EUR", "initial_value": 50.650, "initial_quantity": 0, "initial_date": "2025-10-15", "upper_threshold": 55, "lower_threshold": -1},
     {"symbol": "FR0000121329", "name": "THALES", "sector": "PEA", "currency": "EUR", "initial_value": 260.210, "initial_quantity": 0, "initial_date": "2025-10-15", "upper_threshold": 315, "lower_threshold": -1},
     {"symbol": "FR0000054900", "name": "TF1", "sector": "PEA", "currency": "EUR", "initial_value": 8.586, "initial_quantity": 0, "initial_date": "2025-10-06", "upper_threshold": 10, "lower_threshold": -1},
     {"symbol": "FR0010282822", "name": "VUSIONGROUP", "sector": "PEA", "currency": "EUR", "initial_value": 245.380, "initial_quantity": 0, "initial_date": "2025-10-22", "upper_threshold": 300, "lower_threshold": -1},
@@ -35,6 +34,7 @@
   "successful_exits": [
     {"symbol": "FR0004163111", "name": "Genfit", "sector": "PEA", "currency": "EUR", "initial_value": 3.644, "initial_quantity": 0, "initial_date": "2025-10-29", "upper_threshold": 4.5, "lower_threshold": -1},
     {"symbol": "US5951121038", "name": "Micron Technology", "sector": "PEA", "currency": "USD", "initial_value": 246.674, "initial_quantity": 0, "initial_date": "2025-10-30", "upper_threshold": 269.35, "lower_threshold": -1},
+    {"symbol": "FR001400Q9V2", "name": "EXOSENS", "sector": "PEA", "currency": "EUR", "initial_value": 50.650, "initial_quantity": 0, "initial_date": "2025-10-15", "upper_threshold": 55, "lower_threshold": -1},
     {"symbol": "FR0014004974", "name": "ENOGIA", "sector": "PEA", "currency": "EUR", "initial_value": 4.723, "initial_quantity": 0, "initial_date": "2025-10-09", "upper_threshold": 5.5, "lower_threshold": -1}
   ]
 }
