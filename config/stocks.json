@@ -31,8 +31,8 @@
     {"symbol": "FR0000031775", "name": "VICAT", "sector": "PEA", "currency": "EUR", "initial_value": 76.1, "initial_quantity": 0, "initial_date": "2026-01-03", "upper_threshold": 90, "lower_threshold": -1},
     {"symbol": "FR0000125007", "name": "SAINT GOBAIN", "sector": "PEA", "currency": "EUR", "initial_value": 85.22, "initial_quantity": 0, "initial_date": "2026-01-05", "upper_threshold": 110, "lower_threshold": -1},
     {"symbol": "DE0005810055", "name": "Deutsche Boerse", "sector": "PEA", "currency": "EUR", "initial_value": 210, "initial_quantity": 0, "initial_date": "2026-01-14", "upper_threshold": 250, "lower_threshold": -1},
-    {"symbol": "FR0000121204", "name": "WENDEL", "sector": "PEA", "currency": "EUR", "initial_value": 79.2, "initial_quantity": 0, "initial_date": "2026-01-19", "upper_threshold": 105, "lower_threshold": -1},
-    {"symbol": "FR0000120560", "name": "Quadient", "sector": "PEA", "currency": "EUR", "initial_value": 16, "initial_quantity": 0, "initial_date": "2026-01-20", "upper_threshold": 22, "lower_threshold": -1}
+    {"symbol": "FR0000121204", "name": "WENDEL", "sector": "PEA", "currency": "EUR", "initial_value": 80.25, "initial_quantity": 0, "initial_date": "2026-01-19", "upper_threshold": 105, "lower_threshold": -1},
+    {"symbol": "FR0000120560", "name": "Quadient", "sector": "PEA", "currency": "EUR", "initial_value": 15.74, "initial_quantity": 0, "initial_date": "2026-01-20", "upper_threshold": 22, "lower_threshold": -1}
     
   ],
   "successful_exits": [
