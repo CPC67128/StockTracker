@@ -33,7 +33,8 @@
     {"symbol": "DE0005810055", "name": "Deutsche Boerse", "sector": "PEA", "currency": "EUR", "initial_value": 210, "initial_quantity": 0, "initial_date": "2026-01-14", "upper_threshold": 250, "lower_threshold": -1},
     {"symbol": "FR0000121204", "name": "WENDEL", "sector": "PEA", "currency": "EUR", "initial_value": 80.25, "initial_quantity": 0, "initial_date": "2026-01-19", "upper_threshold": 105, "lower_threshold": -1},
     {"symbol": "FR0000120560", "name": "Quadient", "sector": "PEA", "currency": "EUR", "initial_value": 15.74, "initial_quantity": 0, "initial_date": "2026-01-20", "upper_threshold": 22, "lower_threshold": -1},
-    {"symbol": "FR0000125338", "name": "Capgemini", "sector": "PEA", "currency": "EUR", "initial_value": 134.9, "initial_quantity": 0, "initial_date": "2026-01-22", "upper_threshold": 190, "lower_threshold": -1}
+    {"symbol": "FR0000125338", "name": "Capgemini", "sector": "PEA", "currency": "EUR", "initial_value": 134.9, "initial_quantity": 0, "initial_date": "2026-01-22", "upper_threshold": 190, "lower_threshold": -1},
+    {"symbol": "FR0006174348", "name": "Bureau Veritas", "sector": "PEA", "currency": "EUR", "initial_value": 27.3, "initial_quantity": 0, "initial_date": "2026-01-22", "upper_threshold": 36, "lower_threshold": -1}
     
   ],
   "successful_exits": [
