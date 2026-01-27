@@ -35,7 +35,8 @@
     {"symbol": "FR0000120560", "name": "Quadient", "sector": "PEA", "currency": "EUR", "initial_value": 15.74, "initial_quantity": 0, "initial_date": "2026-01-20", "upper_threshold": 22, "lower_threshold": -1},
     {"symbol": "FR0000125338", "name": "Capgemini", "sector": "PEA", "currency": "EUR", "initial_value": 134.9, "initial_quantity": 0, "initial_date": "2026-01-22", "upper_threshold": 190, "lower_threshold": -1},
     {"symbol": "FR0006174348", "name": "Bureau Veritas", "sector": "PEA", "currency": "EUR", "initial_value": 27.3, "initial_quantity": 0, "initial_date": "2026-01-22", "upper_threshold": 36, "lower_threshold": -1},
-    {"symbol": "FR0014004974", "name": "Enogia", "sector": "PEA", "currency": "EUR", "initial_value": 5.92, "initial_quantity": 0, "initial_date": "2026-01-22", "upper_threshold": 8, "lower_threshold": -1}
+    {"symbol": "FR0014004974", "name": "Enogia", "sector": "PEA", "currency": "EUR", "initial_value": 5.92, "initial_quantity": 0, "initial_date": "2026-01-22", "upper_threshold": 8, "lower_threshold": -1},
+    {"symbol": "FR0000050809", "name": "Sopra Steria", "sector": "PEA", "currency": "EUR", "initial_value": 148.5, "initial_quantity": 0, "initial_date": "2026-01-27", "upper_threshold": 185, "lower_threshold": -1}
     
   ],
   "successful_exits": [
