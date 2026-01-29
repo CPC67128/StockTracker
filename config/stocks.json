@@ -37,7 +37,7 @@
     {"symbol": "FR0006174348", "name": "Bureau Veritas", "sector": "PEA", "currency": "EUR", "initial_value": 27.3, "initial_quantity": 0, "initial_date": "2026-01-22", "upper_threshold": 36, "lower_threshold": -1},
     {"symbol": "FR0014004974", "name": "Enogia", "sector": "PEA", "currency": "EUR", "initial_value": 5.92, "initial_quantity": 0, "initial_date": "2026-01-22", "upper_threshold": 8, "lower_threshold": -1},
     {"symbol": "FR0000050809", "name": "Sopra Steria", "sector": "PEA", "currency": "EUR", "initial_value": 147.3, "initial_quantity": 0, "initial_date": "2026-01-27", "upper_threshold": 185, "lower_threshold": -1},
-    {"symbol": "FR0000130577", "name": "PUBLICIS GROUPE SA", "sector": "PEA", "currency": "EUR", "initial_value": 85.78, "initial_quantity": 0, "initial_date": "2026-01-29", "upper_threshold": 105, "lower_threshold": -1}
+    {"symbol": "FR0000130577", "name": "PUBLICIS GROUPE SA", "sector": "PEA", "currency": "EUR", "initial_value": 85.82, "initial_quantity": 0, "initial_date": "2026-01-29", "upper_threshold": 105, "lower_threshold": -1}
     
     
   ],
