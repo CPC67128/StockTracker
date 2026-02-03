@@ -38,7 +38,8 @@
     {"symbol": "FR0014004974", "name": "Enogia", "sector": "PEA", "currency": "EUR", "initial_value": 5.92, "initial_quantity": 0, "initial_date": "2026-01-22", "upper_threshold": 8, "lower_threshold": -1},
     {"symbol": "FR0000050809", "name": "Sopra Steria", "sector": "PEA", "currency": "EUR", "initial_value": 147.3, "initial_quantity": 0, "initial_date": "2026-01-27", "upper_threshold": 185, "lower_threshold": -1},
     {"symbol": "FR0000130577", "name": "PUBLICIS GROUPE SA", "sector": "PEA", "currency": "EUR", "initial_value": 85.82, "initial_quantity": 0, "initial_date": "2026-01-29", "upper_threshold": 105, "lower_threshold": -1},
-    {"symbol": "FR0000050353", "name": "Lisi", "sector": "PEA", "currency": "EUR", "initial_value": 53, "initial_quantity": 0, "initial_date": "2026-01-29", "upper_threshold": 63, "lower_threshold": -1}
+    {"symbol": "FR0000050353", "name": "Lisi", "sector": "PEA", "currency": "EUR", "initial_value": 53, "initial_quantity": 0, "initial_date": "2026-01-29", "upper_threshold": 63, "lower_threshold": -1},
+    {"symbol": "FR0000120628", "name": "AXA", "sector": "PEA", "currency": "EUR", "initial_value": 38.99, "initial_quantity": 0, "initial_date": "2026-02-03", "upper_threshold": 50, "lower_threshold": -1}
     
     
   ],
