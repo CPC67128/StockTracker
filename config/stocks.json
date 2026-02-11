@@ -24,7 +24,6 @@
     {"symbol": "FR0000039109", "name": "SECHE ENVIRONNEM.", "sector": "PEA", "currency": "EUR", "initial_value": 69.5, "initial_quantity": 0, "initial_date": "2025-12-07", "upper_threshold": 90, "lower_threshold": -1},
     {"symbol": "FR0013280286", "name": "BIOMERIEUX", "sector": "PEA", "currency": "EUR", "initial_value": 104.3, "initial_quantity": 0, "initial_date": "2025-12-08", "upper_threshold": 125, "lower_threshold": -1},
     {"symbol": "FR0000120172", "name": "CARREFOUR", "sector": "PEA", "currency": "EUR", "initial_value": 14.26, "initial_quantity": 0, "initial_date": "2025-12-15", "upper_threshold": 17, "lower_threshold": -1},
-
     {"symbol": "FR0012757854", "name": "SPIE", "sector": "PEA", "currency": "EUR", "initial_value": 48.50, "initial_quantity": 0, "initial_date": "2025-12-19", "upper_threshold": 56, "lower_threshold": -1},
     {"symbol": "FR0000077919", "name": "JCDECAUX", "sector": "PEA", "currency": "EUR", "initial_value": 15.35, "initial_quantity": 0, "initial_date": "2025-12-21", "upper_threshold": 20, "lower_threshold": -1},
     {"symbol": "FR0000031775", "name": "VICAT", "sector": "PEA", "currency": "EUR", "initial_value": 76.1, "initial_quantity": 0, "initial_date": "2026-01-03", "upper_threshold": 90, "lower_threshold": -1},
@@ -41,7 +40,8 @@
     {"symbol": "FR0000120628", "name": "AXA", "sector": "PEA", "currency": "EUR", "initial_value": 39.3, "initial_quantity": 0, "initial_date": "2026-02-03", "upper_threshold": 50, "lower_threshold": -1},
     {"symbol": "FR0000053043", "name": "AdVini", "sector": "PEA", "currency": "EUR", "initial_value": 14.15, "initial_quantity": 0, "initial_date": "2026-02-05", "upper_threshold": 18, "lower_threshold": -1},
     {"symbol": "NL0000235190", "name": "Airbus", "sector": "PEA", "currency": "EUR", "initial_value": 189.32, "initial_quantity": 0, "initial_date": "2026-02-05", "upper_threshold": 250, "lower_threshold": -1},
-    {"symbol": "FR0004040608", "name": "ABC ARBITRAGE", "sector": "PEA", "currency": "EUR", "initial_value": 5.55, "initial_quantity": 0, "initial_date": "2026-02-08", "upper_threshold": 7, "lower_threshold": -1}
+    {"symbol": "FR0004040608", "name": "ABC ARBITRAGE", "sector": "PEA", "currency": "EUR", "initial_value": 5.55, "initial_quantity": 0, "initial_date": "2026-02-08", "upper_threshold": 7, "lower_threshold": -1},
+    {"symbol": "FR0011071570", "name": "COGRA", "sector": "PEA", "currency": "EUR", "initial_value": 6.96, "initial_quantity": 0, "initial_date": "2026-02-11", "upper_threshold": 9, "lower_threshold": -1}
     
     
     
