@@ -41,7 +41,9 @@
     {"symbol": "NL0000235190", "name": "Airbus", "sector": "PEA", "currency": "EUR", "initial_value": 189.32, "initial_quantity": 0, "initial_date": "2026-02-05", "upper_threshold": 250, "lower_threshold": -1},
     {"symbol": "FR0004040608", "name": "ABC ARBITRAGE", "sector": "PEA", "currency": "EUR", "initial_value": 5.55, "initial_quantity": 0, "initial_date": "2026-02-08", "upper_threshold": 7, "lower_threshold": -1},
     {"symbol": "FR0011071570", "name": "COGRA", "sector": "PEA", "currency": "EUR", "initial_value": 6.96, "initial_quantity": 0, "initial_date": "2026-02-11", "upper_threshold": 9, "lower_threshold": -1},
-    {"symbol": "NL0010273215", "name": "ASML", "sector": "PEA", "currency": "EUR", "initial_value": 1190.40, "initial_quantity": 0, "initial_date": "2026-02-13", "upper_threshold": 1550, "lower_threshold": -1}
+    {"symbol": "NL0010273215", "name": "ASML", "sector": "PEA", "currency": "EUR", "initial_value": 1190.40, "initial_quantity": 0, "initial_date": "2026-02-13", "upper_threshold": 1550, "lower_threshold": -1},
+    {"symbol": "FR0012882389", "name": "EQUASENS", "sector": "PEA", "currency": "EUR", "initial_value": 36.55, "initial_quantity": 0, "initial_date": "2026-02-13", "upper_threshold": 52, "lower_threshold": -1}
+    
     
     
     
