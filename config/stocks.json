@@ -36,20 +36,21 @@
     {"symbol": "FR0014004974", "name": "Enogia", "sector": "PEA", "currency": "EUR", "initial_value": 5.92, "initial_quantity": 0, "initial_date": "2026-01-22", "upper_threshold": 8, "lower_threshold": -1},
     {"symbol": "FR0000050809", "name": "Sopra Steria", "sector": "PEA", "currency": "EUR", "initial_value": 147.3, "initial_quantity": 0, "initial_date": "2026-01-27", "upper_threshold": 185, "lower_threshold": -1},
     {"symbol": "FR0000130577", "name": "PUBLICIS GROUPE SA", "sector": "PEA", "currency": "EUR", "initial_value": 85.82, "initial_quantity": 0, "initial_date": "2026-01-29", "upper_threshold": 105, "lower_threshold": -1},
-    {"symbol": "FR0000050353", "name": "Lisi", "sector": "PEA", "currency": "EUR", "initial_value": 53, "initial_quantity": 0, "initial_date": "2026-01-29", "upper_threshold": 63, "lower_threshold": -1},
     {"symbol": "FR0000120628", "name": "AXA", "sector": "PEA", "currency": "EUR", "initial_value": 39.3, "initial_quantity": 0, "initial_date": "2026-02-03", "upper_threshold": 50, "lower_threshold": -1},
     {"symbol": "FR0000053043", "name": "AdVini", "sector": "PEA", "currency": "EUR", "initial_value": 14.15, "initial_quantity": 0, "initial_date": "2026-02-05", "upper_threshold": 18, "lower_threshold": -1},
     {"symbol": "NL0000235190", "name": "Airbus", "sector": "PEA", "currency": "EUR", "initial_value": 189.32, "initial_quantity": 0, "initial_date": "2026-02-05", "upper_threshold": 250, "lower_threshold": -1},
     {"symbol": "FR0004040608", "name": "ABC ARBITRAGE", "sector": "PEA", "currency": "EUR", "initial_value": 5.55, "initial_quantity": 0, "initial_date": "2026-02-08", "upper_threshold": 7, "lower_threshold": -1},
     {"symbol": "FR0011071570", "name": "COGRA", "sector": "PEA", "currency": "EUR", "initial_value": 6.96, "initial_quantity": 0, "initial_date": "2026-02-11", "upper_threshold": 9, "lower_threshold": -1},
     {"symbol": "NL0010273215", "name": "ASML", "sector": "PEA", "currency": "EUR", "initial_value": 1190.40, "initial_quantity": 0, "initial_date": "2026-02-13", "upper_threshold": 1550, "lower_threshold": -1},
-    {"symbol": "FR0012882389", "name": "EQUASENS", "sector": "PEA", "currency": "EUR", "initial_value": 36.55, "initial_quantity": 0, "initial_date": "2026-02-13", "upper_threshold": 52, "lower_threshold": -1}
+    {"symbol": "FR0012882389", "name": "EQUASENS", "sector": "PEA", "currency": "EUR", "initial_value": 36.55, "initial_quantity": 0, "initial_date": "2026-02-13", "upper_threshold": 52, "lower_threshold": -1},
+    {"symbol": "FR0010485268", "name": "FOUNTAINE PAJOT", "sector": "PEA", "currency": "EUR", "initial_value": 92.6, "initial_quantity": 0, "initial_date": "2026-02-21", "upper_threshold": 125, "lower_threshold": -1}
     
     
     
     
   ],
   "successful_exits": [
+    {"symbol": "FR0000050353", "name": "Lisi", "sector": "PEA", "currency": "EUR", "initial_value": 53, "initial_quantity": 0, "initial_date": "2026-01-29", "upper_threshold": 63, "lower_threshold": -1},
     {"symbol": "FR0013341781", "name": "2CRSI", "sector": "PEA", "currency": "EUR", "initial_value": 13.928, "initial_quantity": 0, "initial_date": "2025-10-06", "upper_threshold": 16, "lower_threshold": -1},
     {"symbol": "FR0004163111", "name": "Genfit", "sector": "PEA", "currency": "EUR", "initial_value": 3.644, "initial_quantity": 0, "initial_date": "2025-10-29", "upper_threshold": 4.5, "lower_threshold": -1},
     {"symbol": "FR0000130452", "name": "EIFFAGE", "sector": "PEA", "currency": "EUR", "initial_value": 110.483, "initial_quantity": 0, "initial_date": "2025-10-02", "upper_threshold": 135, "lower_threshold": -1},
