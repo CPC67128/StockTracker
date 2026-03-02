@@ -47,7 +47,7 @@
     {"symbol": "FR0010485268", "name": "FOUNTAINE PAJOT", "sector": "PEA", "currency": "EUR", "initial_value": 92.1, "initial_quantity": 0, "initial_date": "2026-02-21", "upper_threshold": 125, "lower_threshold": -1},
     {"symbol": "FR0013333432", "name": "Thermador", "sector": "PEA", "currency": "EUR", "initial_value": 77.7, "initial_quantity": 0, "initial_date": "2026-02-24", "upper_threshold": 95, "lower_threshold": -1},
     {"symbol": "FR0000031577", "name": "Virbac", "sector": "PEA", "currency": "EUR", "initial_value": 370.0, "initial_quantity": 0, "initial_date": "2026-02-24", "upper_threshold": 440, "lower_threshold": -1},
-    {"symbol": "FR0012202497", "name": "DIAGNOSTIC MEDICAL", "sector": "PEA", "currency": "EUR", "initial_value": 1.315, "initial_quantity": 0, "initial_date": "2026-03-02", "upper_threshold": 1.7, "lower_threshold": -1}
+    {"symbol": "FR0012202497", "name": "DIAGNOSTIC MEDICAL", "sector": "PEA", "currency": "EUR", "initial_value": 1.29, "initial_quantity": 0, "initial_date": "2026-03-02", "upper_threshold": 1.7, "lower_threshold": -1}
     
     
     
