@@ -52,7 +52,8 @@
     {"symbol": "FR0011992700", "name": "Ateme", "sector": "PEA", "currency": "EUR", "initial_value": 6.96, "initial_quantity": 0, "initial_date": "2026-03-05", "upper_threshold": 9, "lower_threshold": -1},
     {"symbol": "FR0014003T71", "name": "Omer-Decugis", "sector": "PEA", "currency": "EUR", "initial_value": 9.46, "initial_quantity": 0, "initial_date": "2026-03-07", "upper_threshold": 11.5, "lower_threshold": -1},
     {"symbol": "FR0000036675", "name": "Crit", "sector": "PEA", "currency": "EUR", "initial_value": 59, "initial_quantity": 0, "initial_date": "2026-03-12", "upper_threshold": 77, "lower_threshold": -1},
-    {"symbol": "FR0013357621", "name": "Crit", "sector": "PEA", "currency": "EUR", "initial_value": 48.2, "initial_quantity": 0, "initial_date": "2026-03-16", "upper_threshold": 60, "lower_threshold": -1}
+    {"symbol": "FR0013357621", "name": "WAVESTONE", "sector": "PEA", "currency": "EUR", "initial_value": 48.2, "initial_quantity": 0, "initial_date": "2026-03-16", "upper_threshold": 60, "lower_threshold": -1},
+    {"symbol": "FR0004125920", "name": "Amundi ", "sector": "PEA", "currency": "EUR", "initial_value": 74.2, "initial_quantity": 0, "initial_date": "2026-03-16", "upper_threshold": 94, "lower_threshold": -1}
      
     
     
