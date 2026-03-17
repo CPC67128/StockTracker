@@ -54,7 +54,8 @@
     {"symbol": "FR0000036675", "name": "Crit", "sector": "PEA", "currency": "EUR", "initial_value": 59, "initial_quantity": 0, "initial_date": "2026-03-12", "upper_threshold": 77, "lower_threshold": -1},
     {"symbol": "FR0013357621", "name": "WAVESTONE", "sector": "PEA", "currency": "EUR", "initial_value": 48.1, "initial_quantity": 0, "initial_date": "2026-03-16", "upper_threshold": 60, "lower_threshold": -1},
     {"symbol": "FR0004125920", "name": "Amundi ", "sector": "PEA", "currency": "EUR", "initial_value": 73.9, "initial_quantity": 0, "initial_date": "2026-03-16", "upper_threshold": 94, "lower_threshold": -1},
-    {"symbol": "FR0010040865", "name": "Gecina ", "sector": "CTO", "currency": "EUR", "initial_value": 70.5, "initial_quantity": 0, "initial_date": "2026-03-18", "upper_threshold": 100, "lower_threshold": -1}
+    {"symbol": "FR0010040865", "name": "Gecina ", "sector": "CTO", "currency": "EUR", "initial_value": 70.5, "initial_quantity": 0, "initial_date": "2026-03-18", "upper_threshold": 100, "lower_threshold": -1},
+    {"symbol": "FR0010259150", "name": "IPSEN ", "sector": "PEA", "currency": "EUR", "initial_value": 158, "initial_quantity": 0, "initial_date": "2026-03-16", "upper_threshold": 180, "lower_threshold": -1}
      
     
     
