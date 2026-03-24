@@ -46,7 +46,6 @@
     {"symbol": "FR0000031577", "name": "Virbac", "sector": "PEA", "currency": "EUR", "initial_value": 370.0, "initial_quantity": 0, "initial_date": "2026-02-24", "upper_threshold": 440, "lower_threshold": -1},
     {"symbol": "FR0012202497", "name": "DIAGNOSTIC MEDICAL", "sector": "PEA", "currency": "EUR", "initial_value": 1.29, "initial_quantity": 0, "initial_date": "2026-03-02", "upper_threshold": 1.7, "lower_threshold": -1},
     {"symbol": "FR0000066672", "name": "GL EVENTS", "sector": "PEA", "currency": "EUR", "initial_value": 33.2, "initial_quantity": 0, "initial_date": "2026-03-02", "upper_threshold": 43, "lower_threshold": -1},
-    {"symbol": "FR0011992700", "name": "Ateme", "sector": "PEA", "currency": "EUR", "initial_value": 6.96, "initial_quantity": 0, "initial_date": "2026-03-05", "upper_threshold": 9, "lower_threshold": -1},
     {"symbol": "FR0014003T71", "name": "Omer-Decugis", "sector": "PEA", "currency": "EUR", "initial_value": 9.3, "initial_quantity": 0, "initial_date": "2026-03-07", "upper_threshold": 11.5, "lower_threshold": -1},
     {"symbol": "FR0000036675", "name": "Crit", "sector": "PEA", "currency": "EUR", "initial_value": 59, "initial_quantity": 0, "initial_date": "2026-03-12", "upper_threshold": 77, "lower_threshold": -1},
     {"symbol": "FR0013357621", "name": "WAVESTONE", "sector": "PEA", "currency": "EUR", "initial_value": 48.1, "initial_quantity": 0, "initial_date": "2026-03-16", "upper_threshold": 60, "lower_threshold": -1},
@@ -71,6 +70,7 @@
     {"symbol": "US5951121038", "name": "Micron Technology", "sector": "PEA", "currency": "USD", "initial_value": 246.674, "initial_quantity": 0, "initial_date": "2025-10-30", "upper_threshold": 269.35, "lower_threshold": -1},
     {"symbol": "FR001400Q9V2", "name": "EXOSENS", "sector": "PEA", "currency": "EUR", "initial_value": 50.650, "initial_quantity": 0, "initial_date": "2025-10-15", "upper_threshold": 55, "lower_threshold": -1},
     {"symbol": "FR0010313833", "name": "ARKEMA", "sector": "PEA", "currency": "EUR", "initial_value": 52.30, "initial_quantity": 0, "initial_date": "2025-12-16", "upper_threshold": 64, "lower_threshold": -1},
+    {"symbol": "FR0011992700", "name": "Ateme", "sector": "PEA", "currency": "EUR", "initial_value": 6.96, "initial_quantity": 0, "initial_date": "2026-03-05", "upper_threshold": 9, "lower_threshold": -1},
     {"symbol": "FR0000077919", "name": "JCDECAUX", "sector": "PEA", "currency": "EUR", "initial_value": 15.35, "initial_quantity": 0, "initial_date": "2025-12-21", "upper_threshold": 20, "lower_threshold": -1},
     {"symbol": "FR0014004974", "name": "ENOGIA", "sector": "PEA", "currency": "EUR", "initial_value": 4.723, "initial_quantity": 0, "initial_date": "2025-10-09", "upper_threshold": 5.5, "lower_threshold": -1}
   ]
