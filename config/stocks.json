@@ -54,7 +54,8 @@
     {"symbol": "FR0010259150", "name": "IPSEN ", "sector": "PEA", "currency": "EUR", "initial_value": 157.7, "initial_quantity": 0, "initial_date": "2026-03-16", "upper_threshold": 180, "lower_threshold": -1},
     {"symbol": "FR001400U4P9", "name": "ODYSSEE ", "sector": "PEA", "currency": "EUR", "initial_value": 28.9, "initial_quantity": 0, "initial_date": "2026-03-19", "upper_threshold": 37, "lower_threshold": -1, "purchase_fee": 2.89},
     {"symbol": "FR0000065484", "name": "LECTRA ", "sector": "PEA", "currency": "EUR", "initial_value": 16, "initial_quantity": 0, "initial_date": "2026-03-20", "upper_threshold": 26, "lower_threshold": -1, "purchase_fee": 2.88},
-    {"symbol": "FR0000064578", "name": "Covivio ", "sector": "PEA", "currency": "EUR", "initial_value": 52.5, "initial_quantity": 0, "initial_date": "2026-03-23", "upper_threshold": 69, "lower_threshold": -1, "purchase_fee": 3.84}
+    {"symbol": "FR0000064578", "name": "Covivio ", "sector": "PEA", "currency": "EUR", "initial_value": 52.5, "initial_quantity": 0, "initial_date": "2026-03-23", "upper_threshold": 69, "lower_threshold": -1, "purchase_fee": 3.84},
+    {"symbol": "FR0000035370", "name": "BASTIDE LE CONFORT ", "sector": "PEA", "currency": "EUR", "initial_value": 23.5, "initial_quantity": 0, "initial_date": "2026-03-26", "upper_threshold": 30, "lower_threshold": -1, "purchase_fee": 1.95}
      
     
     
