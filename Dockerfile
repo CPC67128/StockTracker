@@ -1,27 +1,27 @@
-# Use official Python runtime as base image
-FROM python:3.11-slim
+# ── Build stage ───────────────────────────────────────────────────────────────
+FROM python:3.11-slim AS builder
 
-# Set working directory in container
 WORKDIR /app
 
-# Copy requirements file
-COPY requirements.txt .
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 
-# Install setuptools first (for Python 3.12+ compatibility)
-RUN pip install --no-cache-dir setuptools
+COPY requirements-backend.txt .
+RUN pip install --no-cache-dir -r requirements-backend.txt
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# ── Runtime stage ─────────────────────────────────────────────────────────────
+FROM python:3.11-slim
 
-# Copy application source code and configuration
+WORKDIR /app
+
+COPY --from=builder /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
 COPY src/ ./src/
 COPY .env .env
 
-# Create data directory
 RUN mkdir -p /app/data
 
-# Set Python path
 ENV PYTHONPATH=/app/src
 
-# Run the application
 CMD ["python", "src/main.py"]
