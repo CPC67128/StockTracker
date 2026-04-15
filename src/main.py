@@ -211,12 +211,13 @@ class StockTracker:
         # Run an immediate check on startup
         self.check_stocks()
 
-        # Schedule checks at 09:00, 12:00, 15:00 every weekday
-        self.scheduler.add_job(
-            self.check_stocks,
-            CronTrigger(hour='9,12,15', minute='0', day_of_week='mon-fri'),
-            id='stock_check'
-        )
+        # Schedule checks at 09:15, 11:45, 14:00, 16:30, 18:00 every weekday
+        for job_id, (h, m) in enumerate([('9', '15'), ('11', '45'), ('14', '0'), ('16', '30'), ('18', '0')]):
+            self.scheduler.add_job(
+                self.check_stocks,
+                CronTrigger(hour=h, minute=m, day_of_week='mon-fri'),
+                id=f'stock_check_{job_id}'
+            )
 
         logger.info("Scheduler started. Press Ctrl+C to exit.")
         try:
