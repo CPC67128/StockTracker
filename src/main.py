@@ -206,7 +206,7 @@ class StockTracker:
 
     def run(self):
         """Start the stock tracker with scheduled checks"""
-        logger.info("StockTracker starting — checks scheduled at 09:00, 12:00, 15:00")
+        logger.info("StockTracker starting — checks scheduled at 09:15, 11:45, 14:00, 16:30, 18:00 (Mon-Fri)")
 
         # Run an immediate check on startup
         self.check_stocks()
