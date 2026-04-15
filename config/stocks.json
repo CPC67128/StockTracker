@@ -57,6 +57,7 @@
     {"symbol": "FR0000064578", "name": "Covivio ", "sector": "PEA", "currency": "EUR", "initial_value": 52.5, "initial_quantity": 0, "initial_date": "2026-03-23", "upper_threshold": 69, "lower_threshold": -1, "purchase_fee": 3.84},
     {"symbol": "FR0000035370", "name": "BASTIDE LE CONFORT ", "sector": "PEA", "currency": "EUR", "initial_value": 23.5, "initial_quantity": 0, "initial_date": "2026-03-26", "upper_threshold": 30, "lower_threshold": -1, "purchase_fee": 1.95},
     {"symbol": "FR0013176526", "name": "VALEP", "sector": "PEA", "currency": "EUR", "initial_value": 10.5, "initial_quantity": 0, "initial_date": "2026-04-01", "upper_threshold": 16, "lower_threshold": -1, "purchase_fee": 3.84},
+    {"symbol": "FR0000131906", "name": "RENAULT", "sector": "PEA", "currency": "EUR", "initial_value": 30.90, "initial_quantity": 0, "initial_date": "2026-04-15", "upper_threshold": 38, "lower_threshold": -1, "purchase_fee": 3.84},
     {"symbol": "FR0000033219", "name": "ALTAREA", "sector": "PEA", "currency": "EUR", "initial_value": 116.0, "initial_quantity": 0, "initial_date": "2026-04-03", "upper_threshold": 150, "lower_threshold": -1, "purchase_fee": 6.22}
      
     
