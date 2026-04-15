@@ -11,7 +11,7 @@
     {"symbol": "GB00BMHVL512", "name": "Klarna", "sector": "CTO", "currency": "USD", "initial_value": 39.27, "initial_quantity": 0, "initial_date": "2025-10-27", "upper_threshold": 64.675, "lower_threshold": -1},
     {"symbol": "NL0006294274", "name": "Euronext", "sector": "PEA", "currency": "EUR", "initial_value": 127.8, "initial_quantity": 0, "initial_date": "2025-10-28", "upper_threshold": 160, "lower_threshold": -1},
     {"symbol": "FR0014004362", "name": "Entech", "sector": "PEA", "currency": "EUR", "initial_value": 7.91, "initial_quantity": 0, "initial_date": "2025-10-28", "upper_threshold": 11, "lower_threshold": -1},
-    {"symbol": "IE00B4BNMY34", "name": "Accenture", "sector": "PEA", "currency": "USD", "initial_value": 249.967, "initial_quantity": 0, "initial_date": "2025-11-31", "upper_threshold": 310, "lower_threshold": -1},
+    {"symbol": "IE00B4BNMY34", "name": "Accenture", "sector": "PEA", "currency": "USD", "initial_value": 249.967, "initial_quantity": 0, "initial_date": "2025-11-30", "upper_threshold": 310, "lower_threshold": -1},
     {"symbol": "FR0010481960", "name": "Argan", "sector": "CTO", "currency": "EUR", "initial_value": 67.1, "initial_quantity": 0, "initial_date": "2025-11-04", "upper_threshold": 80, "lower_threshold": -1},
     {"symbol": "FR0013451333", "name": "FDJ United", "sector": "PEA", "currency": "EUR", "initial_value": 24.2, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 35, "lower_threshold": -1},
     {"symbol": "FR0010040865", "name": "Gecina", "sector": "CTO", "currency": "EUR", "initial_value": 79.0, "initial_quantity": 0, "initial_date": "2025-11-27", "upper_threshold": 110, "lower_threshold": -1},

@@ -15,7 +15,9 @@
       "Bash(powershell -Command:*)",
       "Bash(del:*)",
       "Bash(docker --version:*)",
-      "Bash(timeout 10 python:*)"
+      "Bash(timeout 10 python:*)",
+      "Bash(git pull:*)",
+      "Bash(venvScriptsactivate)"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(venv/Scripts/pip install *)",
+      "Bash(venv/Scripts/python db/migrate_from_json.py)",
+      "Bash(venv/Scripts/python -c ' *)",
+      "Bash(venv/Scripts/streamlit run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8501)",
+      "Bash(taskkill /F /IM streamlit.exe)",
+      "Bash(exit 0)"
+    ]
+  }
+}

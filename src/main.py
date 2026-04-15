@@ -36,7 +36,7 @@ class StockTracker:
 
     def __init__(self):
         self.fetcher = StockFetcher()
-        self.checker = ThresholdChecker(config_path='config/stocks.json')
+        self.checker = ThresholdChecker()
         self.notifier = EmailNotifier()
         self.scheduler = BlockingScheduler()
         self.last_prices = {}  # Cache last fetched prices

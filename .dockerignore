@@ -19,9 +19,6 @@ ENV/
 *.swp
 *.swo
 
-# Environment
-.env
-
 # Data (will be mounted as volumes)
 data/stocktracker.log
 

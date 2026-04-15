@@ -2,10 +2,12 @@
 Threshold Checker Module
 Checks if stock prices have crossed defined thresholds
 """
-import json
 import os
 from typing import Dict, List, Optional
 import logging
+
+import pymysql
+import pymysql.cursors
 
 logger = logging.getLogger(__name__)
 
@@ -13,61 +15,63 @@ logger = logging.getLogger(__name__)
 class ThresholdChecker:
     """Manages stock thresholds and checks for threshold violations"""
 
-    def __init__(self, config_path: str = "config/stocks.json"):
-        self.config_path = config_path
-        self.last_modified_time = None
-        self.stocks = self.load_stocks()
+    def __init__(self):
+        self._db_config = {
+            'host': os.getenv('DB_HOST', 'localhost'),
+            'port': int(os.getenv('DB_PORT', '3306')),
+            'user': os.getenv('DB_USER'),
+            'password': os.getenv('DB_PASSWORD'),
+            'database': os.getenv('DB_NAME'),
+            'charset': 'utf8mb4',
+            'cursorclass': pymysql.cursors.DictCursor,
+        }
+        self.stocks = self._query_stocks()
 
-    def load_stocks(self) -> List[Dict]:
-        """Load stock threshold configuration from JSON file"""
-        if not os.path.exists(self.config_path):
-            logger.warning(f"Config file not found: {self.config_path}")
-            return []
-
+    def _query_stocks(self) -> List[Dict]:
+        """Query active (unsold) stocks from the database"""
         try:
-            # Update last modified time
-            self.last_modified_time = os.path.getmtime(self.config_path)
+            conn = pymysql.connect(**self._db_config)
+            with conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(
+                        "SELECT * FROM stocks WHERE sold = 0 ORDER BY initial_date, id"
+                    )
+                    rows = cursor.fetchall()
 
-            with open(self.config_path, 'r') as f:
-                data = json.load(f)
-                stocks = data.get('stocks', [])
-                logger.info(f"Loaded {len(stocks)} stocks from configuration")
-                return stocks
+            stocks = []
+            for row in rows:
+                stock = {
+                    'symbol': row['symbol'],
+                    'name': row['name'],
+                    'sector': row['sector'],
+                    'currency': row['currency'],
+                    'initial_value': float(row['initial_value']),
+                    'initial_quantity': row['initial_quantity'],
+                    'initial_date': row['initial_date'].strftime('%Y-%m-%d') if row['initial_date'] else None,
+                    'upper_threshold': float(row['upper_threshold']),
+                    'lower_threshold': float(row['lower_threshold']),
+                }
+                if row['purchase_fee'] is not None:
+                    stock['purchase_fee'] = float(row['purchase_fee'])
+                stocks.append(stock)
+
+            logger.info(f"Loaded {len(stocks)} stocks from database")
+            return stocks
         except Exception as e:
-            logger.error(f"Error loading stock config: {str(e)}")
+            logger.error(f"Error loading stocks from database: {e}")
             return []
-
-    def check_for_config_changes(self) -> bool:
-        """
-        Check if the configuration file has been modified since last load
-
-        Returns:
-            True if config file has changed, False otherwise
-        """
-        if not os.path.exists(self.config_path):
-            return False
-
-        try:
-            current_modified_time = os.path.getmtime(self.config_path)
-            if self.last_modified_time is None or current_modified_time > self.last_modified_time:
-                return True
-            return False
-        except Exception as e:
-            logger.error(f"Error checking config file modification time: {str(e)}")
-            return False
 
     def reload_if_changed(self) -> bool:
         """
-        Reload configuration if file has been modified
+        Re-query the database and update the stock list.
 
         Returns:
-            True if configuration was reloaded, False otherwise
+            True if the number of tracked stocks changed, False otherwise
         """
-        if self.check_for_config_changes():
-            logger.info(f"Configuration file changed, reloading stocks from {self.config_path}")
-            self.stocks = self.load_stocks()
-            return True
-        return False
+        new_stocks = self._query_stocks()
+        changed = len(new_stocks) != len(self.stocks)
+        self.stocks = new_stocks
+        return changed
 
     def check_thresholds(self, prices: Dict[str, Optional[float]]) -> List[Dict]:
         """

@@ -1,0 +1,36 @@
+name: Build Docker images
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Write .env from CONFIG secret
+        run: printf '%s' "$CONFIG" > .env
+        env:
+          CONFIG: ${{ secrets.CONFIG }}
+
+      - name: Build and push backend
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: 192.168.1.192:5000/stock-tracker-backend:latest
+
+      - name: Build and push frontend
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.frontend
+          push: true
+          tags: 192.168.1.192:5000/stock-tracker-frontend:latest
